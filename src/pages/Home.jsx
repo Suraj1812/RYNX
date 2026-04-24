@@ -98,8 +98,41 @@ export default function Home() {
             initial={{ opacity: 0, y: 18, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.14 }}
-            className="grid gap-4"
+            className="relative grid gap-4"
           >
+            <div className="ambient-orb left-[-4%] top-[8%] size-28 bg-primary/22 xl:size-36" />
+            <div className="ambient-orb right-[2%] top-[-2%] size-32 bg-amber-300/18 xl:size-40" style={{ animationDelay: '-4s' }} />
+            <div className="ambient-orb bottom-[12%] right-[18%] size-24 bg-sky-300/18 xl:size-28" style={{ animationDelay: '-7s' }} />
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="floating-depth-card absolute -left-4 top-6 hidden max-w-[12rem] xl:block"
+            >
+              <p className="text-[0.62rem] uppercase tracking-[0.24em] text-white/55">
+                Depth Layer
+              </p>
+              <p className="mt-2 text-sm font-medium tracking-[-0.02em]">
+                3D motion with restrained styling
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="floating-depth-card absolute -right-4 bottom-20 hidden max-w-[11rem] xl:block"
+              style={{ animationDelay: '-5s' }}
+            >
+              <p className="text-[0.62rem] uppercase tracking-[0.24em] text-white/55">
+                Responsive
+              </p>
+              <p className="mt-2 text-sm font-medium tracking-[-0.02em]">
+                Built to feel dimensional on desktop and mobile
+              </p>
+            </motion.div>
+
             <PreviewFrame
               src={heroImage}
               alt="Layered product visual for the RYNX homepage"
@@ -107,6 +140,7 @@ export default function Home() {
               priority
               ratioClassName="aspect-[4/3] sm:aspect-[16/10]"
               imgClassName="object-contain p-8 sm:p-10"
+              className="shadow-[0_34px_110px_-46px_rgba(15,23,42,0.72)]"
             >
               <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-4 p-5 sm:p-6">
                 <div>
@@ -131,6 +165,7 @@ export default function Home() {
                   alt={item.title}
                   dark
                   ratioClassName="aspect-[16/11]"
+                  className="shadow-[0_28px_80px_-44px_rgba(15,23,42,0.62)]"
                 >
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="text-[0.64rem] uppercase tracking-[0.22em] text-white/55">
@@ -148,7 +183,7 @@ export default function Home() {
       <section className="page-shell mt-8 sm:mt-10">
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {homeStats.map((stat) => (
-            <Card key={stat.label} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
+            <Card key={stat.label} className="card-lift rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
               <CardContent className="px-5 py-5">
                 <p className="stat-value">{stat.value}</p>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{stat.label}</p>
@@ -177,7 +212,7 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-60px' }}
               >
-                <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+                <Card className="card-lift h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
                   <div className="p-3 pb-0">
                     <PreviewFrame
                       src={service.media}
@@ -238,7 +273,7 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
             >
-              <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+              <Card className="card-lift h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
                 <div className="p-3 pb-0">
                   <PreviewFrame
                     src={study.media}
