@@ -1,0 +1,17 @@
+{
+  "name": "RYNX",
+  "short_name": "RYNX",
+  "description": "Premium websites, software platforms, and automation systems for modern businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4efe6",
+  "theme_color": "#114f86",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

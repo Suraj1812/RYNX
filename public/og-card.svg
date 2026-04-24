@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#081423"/>
+  <circle cx="990" cy="120" r="220" fill="#123E67" opacity="0.42"/>
+  <circle cx="170" cy="520" r="180" fill="#A97A40" opacity="0.2"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="url(#card)" stroke="rgba(255,255,255,0.16)"/>
+  <rect x="94" y="92" width="72" height="72" rx="36" fill="url(#mark)"/>
+  <path d="M117 139V117h18.4c8.4 0 13.7 4.5 13.7 11.2 0 4.6-2.4 8.2-6.5 9.8L149 139h-8.3l-4.9-4.3h-6.1V139H117Z" fill="#FFF8EE"/>
+  <text x="94" y="248" fill="#FFF8EE" font-family="Manrope, Arial, sans-serif" font-size="74" font-weight="800" letter-spacing="-2.2">
+    RYNX
+  </text>
+  <text x="94" y="320" fill="#E6DCCF" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="-0.7">
+    Premium websites, software platforms, and automation systems.
+  </text>
+  <text x="94" y="392" fill="#9FB0C4" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="500">
+    Designed to look sharper, read cleaner, and launch cleanly on Vercel.
+  </text>
+  <rect x="94" y="452" width="230" height="52" rx="26" fill="#114F86"/>
+  <text x="127" y="486" fill="#FFF8EE" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="700">
+    rynx.dev
+  </text>
+  <defs>
+    <linearGradient id="card" x1="54" y1="54" x2="1146" y2="576" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1C30"/>
+      <stop offset="1" stop-color="#12243B"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="94" y1="92" x2="166" y2="164" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#114F86"/>
+      <stop offset="1" stop-color="#C3924E"/>
+    </linearGradient>
+  </defs>
+</svg>
