@@ -21,7 +21,7 @@ export default function BrandLockup({
       <div
         className={cn(
           'shrink-0 overflow-hidden bg-black shadow-[0_18px_40px_-26px_rgba(15,23,42,0.65)] ring-1 ring-black/8 dark:ring-white/8',
-          compact ? 'size-11 rounded-[18px]' : 'size-14 rounded-[22px]',
+          compact ? 'size-11 rounded-none' : 'size-14 rounded-none',
         )}
       >
         <img
