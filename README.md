@@ -4,11 +4,13 @@ Production marketing site and lead-intake flow for `RYNX`, built with React + Vi
 
 ## What Changed
 
+- Shifted the frontend to a dependency-driven UI system using `shadcn`, `radix-ui`, `lucide-react`, and `@fontsource-variable/geist`.
 - Reworked the full visual system for a more premium, less template-like brand presence.
 - Added both light mode and dark mode with persisted theme preference.
 - Rebuilt the page content and information architecture across Home, Services, Work, About, and Contact.
 - Added production-grade metadata, Open Graph tags, manifest, robots, and sitemap assets.
 - Replaced the placeholder contact setup with a Vercel-compatible API endpoint designed for Resend.
+- Removed the older unused handcrafted sections and legacy dependencies from the active app path.
 - Added deployment documentation, environment variable guidance, and Vercel routing config.
 
 ## Stack
@@ -16,6 +18,10 @@ Production marketing site and lead-intake flow for `RYNX`, built with React + Vi
 - React 19
 - Vite 8
 - Tailwind CSS 4
+- shadcn/ui
+- Radix UI
+- lucide-react
+- Geist via `@fontsource-variable/geist`
 - Framer Motion
 - Vercel Functions for the contact endpoint
 - Resend API for email delivery in production
@@ -111,6 +117,7 @@ If you deploy on a domain other than `https://rynx.dev`, update:
 ```text
 api/contact.js              Vercel serverless contact endpoint
 server/contact-handler.js   Shared validation and email delivery logic
+src/components/ui/*         shadcn and Radix-based UI primitives
 src/context/ThemeContext.jsx
 src/hooks/usePageMeta.js
 src/data/site.js
@@ -126,4 +133,3 @@ vercel.json
 - Verify all contact emails arrive in the target inbox
 - Replace placeholder repo/social links if needed
 - Run `npm run verify`
-
