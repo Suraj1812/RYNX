@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Mail, MapPin, MessageSquareShare, TimerReset } from 'lucide-react'
 import PreviewFrame from '@/components/common/PreviewFrame'
 import PageWrapper from '@/components/layout/PageWrapper'
+import SectionHeading from '@/components/ui/SectionHeading'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -15,7 +16,13 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { budgetOptions, contactChannels, serviceLines, timelineOptions } from '@/data/site'
+import {
+  budgetOptions,
+  contactChannels,
+  contactExpectations,
+  serviceLines,
+  timelineOptions,
+} from '@/data/site'
 import { usePageMeta } from '@/hooks/usePageMeta'
 import { fadeUp, staggerContainer } from '@/utils/animations'
 
@@ -36,7 +43,7 @@ export default function Contact() {
   usePageMeta({
     title: 'Contact',
     description:
-      'Start a project with RYNX for premium websites, structured software surfaces, and launch-ready frontend systems.',
+      'Start a project with RYNX for premium websites, product interfaces, and launch-ready digital systems.',
     path: '/contact',
   })
 
@@ -92,70 +99,89 @@ export default function Contact() {
   return (
     <PageWrapper>
       <section className="page-shell">
-        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-center">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:items-center">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
+          >
             <motion.div variants={fadeUp}>
-              <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
-                Contact RYNX
+              <Badge
+                variant="outline"
+                className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80"
+              >
+                Start a project
               </Badge>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="display-title max-w-4xl">
-              Give us the problem, the deadline, and the part of the site that still feels weak.
+            <motion.h1 variants={fadeUp} className="display-title max-w-5xl">
+              Bring the weak first impression, the messy product shell, or the launch gap.
             </motion.h1>
-            <motion.p variants={fadeUp} className="section-copy max-w-3xl">
-              The form is production-ready, but the page now opens with more visual context and less
-              copy before you get to the actual brief.
+            <motion.p variants={fadeUp} className="hero-copy max-w-3xl">
+              The intake is built for clarity. Tell us what currently feels generic, what needs to
+              feel premium after the rebuild, and how fast the team wants to move.
             </motion.p>
+            <motion.div variants={fadeUp} className="grid gap-2 sm:grid-cols-2">
+              {contactExpectations.map((item) => (
+                <div key={item} className="trust-chip justify-start">
+                  <span className="trust-chip__dot" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
           <PreviewFrame
             src="/visual-launch-motion.svg"
-            alt="Animated launch and handoff visual on the contact page"
+            alt="RYNX contact and launch readiness visual"
             dark
             ratioClassName="aspect-[16/10]"
-          />
+          >
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <p className="text-[0.64rem] uppercase tracking-[0.24em] text-white/55">
+                Brief to build
+              </p>
+              <p className="mt-2 max-w-sm text-lg font-semibold tracking-[-0.04em] text-white">
+                Clear intake, senior review, and a production-ready path forward.
+              </p>
+            </div>
+          </PreviewFrame>
         </div>
       </section>
 
       <section className="page-shell page-section pb-12">
-        <div className="grid gap-4 xl:grid-cols-[0.88fr_1.12fr]">
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)]">
           <div className="space-y-4">
-            <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
-              <div className="p-3 pb-0">
-                <PreviewFrame
-                  src="/visual-automation-motion.svg"
-                  alt="Animated contact workflow preview"
-                  dark
-                  ratioClassName="aspect-[16/10]"
-                  className="rounded-[24px]"
-                />
+            <div className="section-band">
+              <SectionHeading
+                label="What happens next"
+                title="You get a cleaner conversation before any proposal is written."
+                subtitle="We use the brief to understand the pressure, the decision-makers, and the quality bar so the project starts with signal."
+                center={false}
+                className="mb-6"
+              />
+              <div className="space-y-3">
+                {contactExpectations.map((item) => (
+                  <div key={item} className="metric-panel text-sm text-muted-foreground">
+                    {item}
+                  </div>
+                ))}
               </div>
-              <CardHeader className="px-6 pt-6">
-                <CardTitle className="text-xl tracking-[-0.03em]">What to include</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 px-6 pb-6 text-sm leading-7 text-muted-foreground">
-                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
-                  What currently feels too generic or not premium enough.
-                </div>
-                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
-                  The exact business outcome the new site or system needs to support.
-                </div>
-                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
-                  The timeline, decision-maker, and the level of urgency around launch.
-                </div>
-              </CardContent>
-            </Card>
+            </div>
 
-            <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+            <Card className="premium-card py-0">
               <CardHeader className="px-6 pt-6">
-                <CardTitle className="text-xl tracking-[-0.03em]">Contact details</CardTitle>
+                <CardTitle className="text-xl tracking-[-0.04em]">Contact details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 px-6 pb-6">
                 {contactChannels.map((item, index) => {
                   const Icon = infoIcons[index] ?? Mail
 
                   return (
-                    <div key={item.label} className="flex items-start gap-3 rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-4">
+                    <div
+                      key={item.label}
+                      className="flex items-start gap-3 rounded-[22px] border border-border/70 bg-secondary/60 px-4 py-4"
+                    >
                       <div className="mt-0.5 flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                         <Icon className="size-5" />
                       </div>
@@ -172,53 +198,64 @@ export default function Contact() {
             </Card>
           </div>
 
-          <Card className="rounded-[30px] border-border/70 bg-card/92 py-0 shadow-none">
+          <Card className="premium-card py-0">
             <CardHeader className="px-6 pt-6">
-              <CardTitle className="text-xl tracking-[-0.03em]">Project brief</CardTitle>
+              <CardTitle className="text-[1.35rem] tracking-[-0.04em]">Project brief</CardTitle>
             </CardHeader>
             <CardContent className="px-6 pb-6">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">Your name</label>
+                    <label htmlFor="name" className="text-sm font-medium">
+                      Your name
+                    </label>
                     <Input
                       id="name"
                       name="name"
                       value={form.name}
                       onChange={handleInputChange}
-                      className="h-11 rounded-2xl bg-background/80 px-4"
+                      className="h-12 rounded-2xl border-border/70 bg-background/75 px-4"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium">Company</label>
+                    <label htmlFor="company" className="text-sm font-medium">
+                      Company
+                    </label>
                     <Input
                       id="company"
                       name="company"
                       value={form.company}
                       onChange={handleInputChange}
-                      className="h-11 rounded-2xl bg-background/80 px-4"
+                      className="h-12 rounded-2xl border-border/70 bg-background/75 px-4"
                     />
                   </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">Work email</label>
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Work email
+                    </label>
                     <Input
                       id="email"
                       name="email"
                       type="email"
                       value={form.email}
                       onChange={handleInputChange}
-                      className="h-11 rounded-2xl bg-background/80 px-4"
+                      className="h-12 rounded-2xl border-border/70 bg-background/75 px-4"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="service" className="text-sm font-medium">Service focus</label>
+                    <label htmlFor="service" className="text-sm font-medium">
+                      Service focus
+                    </label>
                     <Select value={form.service} onValueChange={(value) => handleSelectChange('service', value)}>
-                      <SelectTrigger id="service" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                      <SelectTrigger
+                        id="service"
+                        className="h-12 w-full rounded-2xl border-border/70 bg-background/75 px-4"
+                      >
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
@@ -234,9 +271,14 @@ export default function Contact() {
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label htmlFor="timeline" className="text-sm font-medium">Timeline</label>
+                    <label htmlFor="timeline" className="text-sm font-medium">
+                      Timeline
+                    </label>
                     <Select value={form.timeline} onValueChange={(value) => handleSelectChange('timeline', value)}>
-                      <SelectTrigger id="timeline" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                      <SelectTrigger
+                        id="timeline"
+                        className="h-12 w-full rounded-2xl border-border/70 bg-background/75 px-4"
+                      >
                         <SelectValue placeholder="Choose a timeline" />
                       </SelectTrigger>
                       <SelectContent>
@@ -249,9 +291,14 @@ export default function Contact() {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="budget" className="text-sm font-medium">Budget</label>
+                    <label htmlFor="budget" className="text-sm font-medium">
+                      Budget
+                    </label>
                     <Select value={form.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
-                      <SelectTrigger id="budget" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                      <SelectTrigger
+                        id="budget"
+                        className="h-12 w-full rounded-2xl border-border/70 bg-background/75 px-4"
+                      >
                         <SelectValue placeholder="Select a budget" />
                       </SelectTrigger>
                       <SelectContent>
@@ -278,21 +325,24 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">Project context</label>
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Project context
+                  </label>
                   <Textarea
                     id="message"
                     name="message"
                     value={form.message}
                     onChange={handleInputChange}
-                    className="min-h-40 rounded-[24px] bg-background/80 px-4 py-4"
-                    placeholder="Tell us what feels off today, what should feel more premium after the rebuild, and what success looks like."
+                    className="min-h-44 rounded-[24px] border-border/70 bg-background/75 px-4 py-4"
+                    placeholder="What feels weak today, what should feel premium after the rebuild, and what success looks like."
                     required
                   />
                 </div>
 
-                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-4 text-sm leading-7 text-muted-foreground">
-                  In local development the endpoint validates and returns a success response without
-                  sending live email. In production on Vercel, add the Resend variables from the README to enable delivery.
+                <div className="rounded-[22px] border border-border/70 bg-secondary/60 px-4 py-4 text-sm leading-7 text-muted-foreground">
+                  In development, the endpoint validates the payload and returns a success response
+                  without sending live email. On Vercel, add the Resend variables from the README
+                  to enable delivery.
                 </div>
 
                 <Button type="submit" size="lg" className="h-12 rounded-full px-6" disabled={loading}>

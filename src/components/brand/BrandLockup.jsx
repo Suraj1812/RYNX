@@ -34,12 +34,12 @@ export default function BrandLockup({
       </div>
 
       <div className={cn('min-w-0', textClassName)}>
-        <p className="truncate text-sm font-semibold tracking-[-0.03em] text-foreground sm:text-[0.96rem]">
+        <p className="truncate font-heading text-sm font-semibold tracking-[-0.05em] text-foreground sm:text-[0.98rem]">
           RYNX
         </p>
         {!hideSubtitle ? (
-          <p className="truncate text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]">
-            Digital Systems
+          <p className="truncate text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground sm:text-[0.7rem]">
+            Premium Digital Systems
           </p>
         ) : null}
       </div>

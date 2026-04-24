@@ -11,7 +11,7 @@ export default function ThemeToggle() {
       type="button"
       variant="outline"
       size="sm"
-      className="rounded-full border-border/70 bg-background/70 px-3 text-foreground shadow-none backdrop-blur-sm"
+      className="rounded-full border-border/70 bg-background/75 px-3 text-foreground shadow-none backdrop-blur-md"
       onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}

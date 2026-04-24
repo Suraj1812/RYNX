@@ -1,17 +1,17 @@
 # RYNX
 
-Production marketing site and lead-intake flow for `RYNX`, built with React + Vite and prepared for deployment on Vercel.
+Premium marketing site and lead-intake flow for `RYNX`, built with React + Vite and prepared for Vercel deployment.
 
-## What Changed
+## Overview
 
-- Shifted the frontend to a dependency-driven UI system using `shadcn`, `radix-ui`, `lucide-react`, and `@fontsource-variable/geist`.
-- Reworked the full visual system for a more premium, less template-like brand presence.
-- Added both light mode and dark mode with persisted theme preference.
-- Rebuilt the page content and information architecture across Home, Services, Work, About, and Contact.
-- Added production-grade metadata, Open Graph tags, manifest, robots, and sitemap assets.
-- Replaced the placeholder contact setup with a Vercel-compatible API endpoint designed for Resend.
-- Removed the older unused handcrafted sections and legacy dependencies from the active app path.
-- Added deployment documentation, environment variable guidance, and Vercel routing config.
+This project has been rebuilt as a high-end brand and product website with:
+
+- a premium, handcrafted visual system across Home, Services, Work, About, Contact, and 404
+- responsive layouts tuned for mobile, tablet, and desktop
+- both light mode and dark mode with persisted preference
+- smooth motion and scroll behavior powered by modern frontend libraries
+- a Vercel-compatible contact endpoint with local development fallback behavior
+- production-ready metadata, social previews, robots, sitemap, and manifest assets
 
 ## Stack
 
@@ -19,21 +19,37 @@ Production marketing site and lead-intake flow for `RYNX`, built with React + Vi
 - Vite 8
 - Tailwind CSS 4
 - shadcn/ui
-- Radix UI
+- Radix UI primitives
 - lucide-react
-- Geist via `@fontsource-variable/geist`
 - Framer Motion
-- Vercel Functions for the contact endpoint
-- Resend API for email delivery in production
+- Lenis
+- Embla Carousel
+- react-countup
+- react-intersection-observer
+- Geist via `@fontsource-variable/geist`
+- Manrope via `@fontsource-variable/manrope`
+- Vercel Functions for `/api/contact`
+- Resend for production email delivery
+
+## Experience Layers
+
+- Premium homepage with motion-led hero, proof sections, service lanes, case study previews, and credibility carousel
+- Services page with structured delivery lanes, capability framing, and FAQ
+- Work page with featured case study, filtered project cards, and expandable detail sheet
+- About page with principles, metrics, and workflow narrative
+- Contact page with improved intake framing and validated project brief form
+- Shared premium shell across navbar, footer, theme system, loading state, and 404 route
 
 ## Local Development
+
+Install dependencies and run the app:
 
 ```bash
 npm install
 npm run dev
 ```
 
-The app runs as a Vite frontend. During local development the contact endpoint is also available at `/api/contact` through a Vite middleware so the form can be tested without deploying first.
+The default Vite app runs locally, and the contact endpoint is also available at `/api/contact` during development.
 
 ## Scripts
 
@@ -49,7 +65,7 @@ npm run verify
 
 ## Environment Variables
 
-Create a `.env.local` file from `.env.example`.
+Copy the example file before configuring production values:
 
 ```bash
 cp .env.example .env.local
@@ -57,31 +73,31 @@ cp .env.example .env.local
 
 Required for live contact delivery:
 
-- `RESEND_API_KEY`: Resend API key
-- `CONTACT_TO_EMAIL`: inbox that should receive new enquiries
-- `CONTACT_FROM_EMAIL`: sender identity used by Resend
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
 
 Recommended:
 
-- `VITE_SITE_URL`: production site URL used for canonical and metadata defaults
+- `VITE_SITE_URL` for canonical metadata and production URLs
 
-## Contact Form Behaviour
+## Contact Form Behavior
 
 ### Development
 
-- Form submissions are validated locally.
-- If Resend variables are missing, the API returns a development success message instead of silently failing.
+- Request payloads are validated locally.
+- If Resend variables are missing, the endpoint returns a development success message instead of failing silently.
 
-### Production on Vercel
+### Production
 
-- `/api/contact` runs as a serverless function.
-- If `RESEND_API_KEY` and `CONTACT_TO_EMAIL` are configured, the function sends a formatted email through Resend.
-- If those variables are missing, the API returns a `503` so the issue is visible before launch.
+- `/api/contact` runs as a Vercel serverless function.
+- When `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` are present, the function sends the enquiry through Resend.
+- If production email variables are missing, the endpoint returns a `503` so the issue is visible before launch.
 
 ## Vercel Deployment
 
-1. Import the repo into Vercel.
-2. Set the framework preset to `Vite` if Vercel does not auto-detect it.
+1. Import the repository into Vercel.
+2. Confirm the framework is detected as `Vite`.
 3. Add the environment variables from `.env.example`.
 4. Deploy.
 
@@ -89,47 +105,59 @@ Recommended:
 
 - `buildCommand: npm run build`
 - `outputDirectory: dist`
-- SPA rewrites for React Router
+- React Router SPA rewrites
 - pass-through handling for `/api/*`
 
 ## SEO and Metadata
 
-The project includes:
+The project already includes:
 
-- canonical metadata
+- page-level metadata via `usePageMeta`
+- canonical URLs
 - Open Graph and Twitter card tags
 - JSON-LD organization metadata
 - `robots.txt`
 - `sitemap.xml`
 - `site.webmanifest`
 - `og-card.svg`
-- theme-color updates tied to light/dark mode
+- theme-color handling for light and dark mode
 
-If you deploy on a domain other than `https://rynx.dev`, update:
+If the production domain changes from `https://rynx.dev`, update:
 
 - `VITE_SITE_URL`
-- `index.html` default canonical/OG URL values
+- `index.html`
 - `public/robots.txt`
 - `public/sitemap.xml`
 
 ## Project Structure
 
 ```text
-api/contact.js              Vercel serverless contact endpoint
-server/contact-handler.js   Shared validation and email delivery logic
-src/components/ui/*         shadcn and Radix-based UI primitives
-src/context/ThemeContext.jsx
-src/hooks/usePageMeta.js
-src/data/site.js
-src/pages/*
-public/*
-vercel.json
+api/contact.js                         Vercel serverless contact endpoint
+server/contact-handler.js              Shared validation and delivery logic
+src/components/common/*                Motion, scroll, metrics, carousel, and shared visuals
+src/components/layout/*                Navbar, footer, shell, theme controls
+src/components/ui/*                    shadcn/ui and Radix-based primitives
+src/context/*                          Theme and smooth-scroll context
+src/data/site.js                       Central site content and structured data
+src/hooks/*                            Metadata and shared hooks
+src/pages/*                            Route-level pages
+public/*                               Static assets, metadata files, animated SVG visuals
+vercel.json                            Vercel config
 ```
+
+## Verification
+
+Latest verification completed successfully with:
+
+- `npm run lint`
+- `npm run build`
+- `npm run verify`
+- local `POST /api/contact` success response in development mode
 
 ## Pre-Launch Checklist
 
-- Set real production domain values
-- Configure Resend environment variables
-- Verify all contact emails arrive in the target inbox
-- Replace placeholder repo/social links if needed
+- Set the real production domain
+- Configure Resend environment variables in Vercel
+- Verify enquiry delivery in the live inbox
+- Replace placeholder brand/contact details if they change
 - Run `npm run verify`

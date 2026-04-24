@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 import { Button } from '@/components/ui/button'
 
 export default function BackToTop() {
   const [show, setShow] = useState(false)
+  const { scrollTo } = useSmoothScroll()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,7 +17,7 @@ export default function BackToTop() {
   }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollTo(0, { duration: 1 })
   }
 
   return (

@@ -5,7 +5,7 @@ import BrandLockup from '@/components/brand/BrandLockup'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { navLinks, serviceLines, siteConfig } from '@/data/site'
+import { navLinks, serviceLines, siteConfig, trustIndicators } from '@/data/site'
 import { fadeUp, staggerContainer } from '@/utils/animations'
 
 export default function Footer() {
@@ -18,16 +18,19 @@ export default function Footer() {
         viewport={{ once: true, margin: '-40px' }}
         className="page-shell"
       >
-        <div className="surface-panel px-6 py-8 sm:px-8">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.15fr_0.75fr_0.85fr_0.9fr]">
+        <div className="section-band px-6 py-8 sm:px-8">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.7fr)_minmax(0,0.8fr)_minmax(0,0.95fr)]">
             <motion.div variants={fadeUp} className="space-y-4">
               <BrandLockup />
-              <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
-                Library-driven redesign
+              <Badge
+                variant="outline"
+                className="rounded-full border-border/70 bg-background/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground"
+              >
+                Billion-dollar startup quality bar
               </Badge>
               <p className="max-w-md text-sm leading-7 text-muted-foreground">
-                RYNX builds premium websites, internal platforms, and launch-ready digital
-                systems for teams that want to look more established online.
+                RYNX builds premium websites, product surfaces, and launch-ready systems for teams
+                that need higher trust at first impression.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
                 <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 hover:text-foreground">
@@ -53,19 +56,24 @@ export default function Footer() {
             </motion.div>
 
             <motion.div variants={fadeUp}>
-              <p className="eyebrow">Focus Areas</p>
+              <p className="eyebrow">Focus areas</p>
               <div className="mt-4 flex flex-col gap-3 text-sm text-muted-foreground">
-                {serviceLines.slice(0, 4).map((service) => (
+                {serviceLines.map((service) => (
                   <p key={service.id}>{service.title}</p>
                 ))}
               </div>
             </motion.div>
 
             <motion.div variants={fadeUp} className="space-y-4">
-              <p className="eyebrow">Repository</p>
-              <p className="text-sm leading-7 text-muted-foreground">
-                The project is prepared for Vercel deployment with production metadata, theme support, and a serverless contact flow.
-              </p>
+              <p className="eyebrow">Trust markers</p>
+              <div className="space-y-2">
+                {trustIndicators.map((item) => (
+                  <div key={item} className="trust-chip justify-start">
+                    <span className="trust-chip__dot" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
               <div className="flex flex-col gap-2 sm:flex-row xl:flex-col">
                 <Button asChild variant="outline" className="justify-between rounded-full sm:flex-1 xl:w-full">
                   <a href={siteConfig.social.github} target="_blank" rel="noreferrer">
@@ -85,9 +93,9 @@ export default function Footer() {
 
           <Separator className="my-6" />
 
-          <div className="flex flex-col gap-2 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between">
-            <p>© {new Date().getFullYear()} RYNX. Production-ready and Vercel aligned.</p>
-            <p>Built with shadcn, Tailwind, lucide-react, and motion.</p>
+          <div className="flex flex-col gap-3 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between">
+            <p>© {new Date().getFullYear()} RYNX. Premium, responsive, and Vercel ready.</p>
+            <p>Built with React, Tailwind CSS, shadcn/ui, Framer Motion, Lenis, and modern component primitives.</p>
           </div>
         </div>
       </motion.div>

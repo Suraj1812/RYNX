@@ -5,7 +5,9 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ScrollProgress from '@/components/common/ScrollProgress'
 import BackToTop from '@/components/common/BackToTop'
+import SmoothScrollProvider from '@/components/common/SmoothScrollProvider'
 import { ThemeProvider } from '@/context/ThemeContext'
+import { useSmoothScroll } from '@/hooks/useSmoothScroll'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Services = lazy(() => import('@/pages/Services'))
@@ -16,10 +18,11 @@ const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
+  const { scrollTo } = useSmoothScroll()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    scrollTo(0, { immediate: true, force: true })
+  }, [pathname, scrollTo])
 
   return null
 }
@@ -69,9 +72,11 @@ function AppShell() {
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <AppShell />
-      </Router>
+      <SmoothScrollProvider>
+        <Router>
+          <AppShell />
+        </Router>
+      </SmoothScrollProvider>
     </ThemeProvider>
   )
 }
