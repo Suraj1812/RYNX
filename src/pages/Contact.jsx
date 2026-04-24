@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, MessageSquareShare, TimerReset } from 'lucide-react'
+import PreviewFrame from '@/components/common/PreviewFrame'
 import PageWrapper from '@/components/layout/PageWrapper'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -91,26 +92,44 @@ export default function Contact() {
   return (
     <PageWrapper>
       <section className="page-shell">
-        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5">
-          <motion.div variants={fadeUp}>
-            <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
-              Contact RYNX
-            </Badge>
+        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-center">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5">
+            <motion.div variants={fadeUp}>
+              <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+                Contact RYNX
+              </Badge>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-title max-w-4xl">
+              Give us the problem, the deadline, and the part of the site that still feels weak.
+            </motion.h1>
+            <motion.p variants={fadeUp} className="section-copy max-w-3xl">
+              The form is production-ready, but the page now opens with more visual context and less
+              copy before you get to the actual brief.
+            </motion.p>
           </motion.div>
-          <motion.h1 variants={fadeUp} className="display-title max-w-4xl">
-            Give us the problem, the deadline, and where the current UI still feels weak.
-          </motion.h1>
-          <motion.p variants={fadeUp} className="section-copy max-w-3xl">
-            This form is now component-driven and Vercel-ready. In development it validates locally,
-            and in production it can send via Resend once the environment variables are configured.
-          </motion.p>
-        </motion.div>
+
+          <PreviewFrame
+            src="/visual-launch-motion.svg"
+            alt="Animated launch and handoff visual on the contact page"
+            dark
+            ratioClassName="aspect-[16/10]"
+          />
+        </div>
       </section>
 
       <section className="page-shell page-section pb-12">
         <div className="grid gap-4 xl:grid-cols-[0.88fr_1.12fr]">
           <div className="space-y-4">
             <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+              <div className="p-3 pb-0">
+                <PreviewFrame
+                  src="/visual-automation-motion.svg"
+                  alt="Animated contact workflow preview"
+                  dark
+                  ratioClassName="aspect-[16/10]"
+                  className="rounded-[24px]"
+                />
+              </div>
               <CardHeader className="px-6 pt-6">
                 <CardTitle className="text-xl tracking-[-0.03em]">What to include</CardTitle>
               </CardHeader>

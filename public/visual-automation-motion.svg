@@ -1,0 +1,62 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .pulse-a { animation: pulseA 3.2s ease-in-out infinite; }
+    .pulse-b { animation: pulseB 4.1s ease-in-out infinite; }
+    .pulse-c { animation: pulseC 2.8s ease-in-out infinite; }
+    .orbit { animation: orbit 6s linear infinite; transform-origin: 360px 240px; }
+    @keyframes pulseA {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    @keyframes pulseB {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 1; transform: scale(0.94); }
+    }
+    @keyframes pulseC {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="720" y1="0" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10243E"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" rx="36" fill="url(#bg)"/>
+  <rect x="44" y="44" width="632" height="392" rx="28" stroke="white" stroke-opacity="0.08"/>
+  <circle cx="360" cy="240" r="114" stroke="#F7F4EE" stroke-opacity="0.12" stroke-width="2"/>
+  <circle cx="360" cy="240" r="166" stroke="#F7F4EE" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M180 144L296 206" stroke="#8CB2D3" stroke-opacity="0.5" stroke-width="3"/>
+  <path d="M296 206L428 156" stroke="#8CB2D3" stroke-opacity="0.5" stroke-width="3"/>
+  <path d="M296 206L390 322" stroke="#8CB2D3" stroke-opacity="0.5" stroke-width="3"/>
+  <path d="M428 156L544 244" stroke="#E6BB79" stroke-opacity="0.55" stroke-width="3"/>
+  <path d="M390 322L544 244" stroke="#E6BB79" stroke-opacity="0.55" stroke-width="3"/>
+  <g class="orbit">
+    <circle cx="360" cy="74" r="16" fill="#E6BB79"/>
+  </g>
+  <g class="pulse-a">
+    <circle cx="180" cy="144" r="34" fill="#F4ECE1"/>
+    <circle cx="180" cy="144" r="12" fill="#102744"/>
+  </g>
+  <g class="pulse-b">
+    <circle cx="296" cy="206" r="38" fill="#204F7D"/>
+    <circle cx="296" cy="206" r="14" fill="#F5F0E7"/>
+  </g>
+  <g class="pulse-c">
+    <circle cx="428" cy="156" r="30" fill="#DAB786"/>
+    <circle cx="428" cy="156" r="11" fill="#102744"/>
+  </g>
+  <g class="pulse-a">
+    <circle cx="390" cy="322" r="30" fill="#0E1D32"/>
+    <circle cx="390" cy="322" r="11" fill="#F4ECE1"/>
+  </g>
+  <g class="pulse-b">
+    <circle cx="544" cy="244" r="42" fill="#173B63"/>
+    <circle cx="544" cy="244" r="15" fill="#F7F4EE"/>
+  </g>
+</svg>

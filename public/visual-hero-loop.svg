@@ -1,0 +1,96 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .float-slow {
+      animation: floatSlow 8s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .float-fast {
+      animation: floatFast 5s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .glow {
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    .scan {
+      animation: scanLine 6s linear infinite;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+    }
+
+    @keyframes floatFast {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(14px) translateX(-10px); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.42; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes scanLine {
+      0% { transform: translateX(-180px); }
+      100% { transform: translateX(760px); }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="bg" x1="66" y1="54" x2="720" y2="562" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071120"/>
+      <stop offset="1" stop-color="#132B47"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="164" y1="128" x2="636" y2="468" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E223A"/>
+      <stop offset="1" stop-color="#173B63"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="165" y1="394" x2="631" y2="394" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#88A6C7" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#88A6C7"/>
+      <stop offset="1" stop-color="#88A6C7" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(555 165) rotate(90) scale(164 220)">
+      <stop stop-color="#E6BB79" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#E6BB79" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" rx="44" fill="url(#bg)"/>
+  <rect x="48" y="48" width="704" height="504" rx="32" fill="url(#panel)" fill-opacity="0.92" stroke="white" stroke-opacity="0.08"/>
+  <rect x="84" y="86" width="632" height="428" rx="26" stroke="white" stroke-opacity="0.08"/>
+  <circle class="glow" cx="555" cy="165" r="180" fill="url(#spot)"/>
+
+  <g class="float-slow">
+    <rect x="110" y="120" width="280" height="152" rx="30" fill="#F7F4EE"/>
+    <rect x="136" y="150" width="120" height="12" rx="6" fill="#D5C0A1"/>
+    <rect x="136" y="178" width="222" height="18" rx="9" fill="#102842"/>
+    <rect x="136" y="212" width="154" height="12" rx="6" fill="#92A7BE"/>
+    <rect x="136" y="240" width="96" height="16" rx="8" fill="#0F4F86"/>
+  </g>
+
+  <g class="float-fast">
+    <rect x="422" y="182" width="244" height="252" rx="32" fill="#0A1525" stroke="white" stroke-opacity="0.08"/>
+    <rect x="454" y="220" width="180" height="12" rx="6" fill="#E4CFB1"/>
+    <rect x="454" y="250" width="148" height="116" rx="24" fill="#143E66"/>
+    <rect x="474" y="270" width="32" height="76" rx="12" fill="#F1E5D2"/>
+    <rect x="522" y="294" width="32" height="52" rx="12" fill="#89A8C7"/>
+    <rect x="570" y="256" width="32" height="90" rx="12" fill="#E6BB79"/>
+    <rect x="454" y="388" width="74" height="16" rx="8" fill="#F7F4EE"/>
+    <rect x="540" y="388" width="94" height="16" rx="8" fill="#395F88"/>
+  </g>
+
+  <g>
+    <path d="M163 394H631" stroke="url(#beam)" stroke-width="3"/>
+    <rect x="-180" y="389" width="180" height="10" rx="5" fill="url(#beam)" class="scan"/>
+  </g>
+
+  <g class="glow">
+    <circle cx="165" cy="394" r="7" fill="#F7F4EE"/>
+    <circle cx="630" cy="394" r="7" fill="#E6BB79"/>
+    <circle cx="394" cy="394" r="7" fill="#8AB6D8"/>
+  </g>
+</svg>

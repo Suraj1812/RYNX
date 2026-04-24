@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, FolderKanban, ShieldCheck, Sparkles } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import PreviewFrame from '@/components/common/PreviewFrame'
 import PageWrapper from '@/components/layout/PageWrapper'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { Badge } from '@/components/ui/badge'
@@ -41,43 +43,49 @@ export default function Projects() {
   return (
     <PageWrapper>
       <section className="page-shell">
-        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
+        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-center">
           <div className="space-y-5">
             <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
               Selected work
             </Badge>
             <h1 className="display-title max-w-4xl">
-              Interfaces and systems that feel more <span className="text-primary">finished</span> than their predecessors.
+              Work pages should feel like <span className="text-primary">proof</span>, not reading homework.
             </h1>
-            <p className="section-copy max-w-3xl">
-              These examples represent the kind of structured visual language and implementation
-              discipline we are pushing this project toward: sharper hierarchy, clearer signals,
-              and more stable production handoff.
+            <p className="section-copy max-w-2xl">
+              These cards now lean on animated previews and tighter summaries, with the longer
+              breakdown still available inside the detail sheet.
             </p>
           </div>
 
-          <div className="surface-panel p-5 lg:p-6">
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {[
-                { label: 'component-led', value: 'UI stack', icon: FolderKanban },
-                { label: 'delivery-ready', value: 'Vercel', icon: ShieldCheck },
-                { label: 'less AI vibe', value: 'Intentional', icon: Sparkles },
-              ].map((item) => {
-                const Icon = item.icon
-
-                return (
-                  <div key={item.label} className="rounded-[22px] border border-border/70 bg-card/92 p-4">
-                    <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                      <Icon className="size-5" />
-                    </div>
-                    <p className="mt-4 text-lg font-semibold tracking-[-0.04em]">{item.value}</p>
-                    <p className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
-                      {item.label}
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <PreviewFrame
+              src="/visual-hero-loop.svg"
+              alt="Animated overview visual for selected work"
+              dark
+              ratioClassName="aspect-[16/10]"
+              className="sm:col-span-2"
+            >
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-[0.64rem] uppercase tracking-[0.24em] text-white/55">
+                  Visual preview
+                </p>
+                <p className="mt-2 text-base font-medium text-white">
+                  Stronger presentation with less clutter.
+                </p>
+              </div>
+            </PreviewFrame>
+            <PreviewFrame
+              src="/visual-brand-motion.svg"
+              alt="Brand website preview"
+              dark
+              ratioClassName="aspect-[16/11]"
+            />
+            <PreviewFrame
+              src="/visual-dashboard-motion.svg"
+              alt="Product dashboard preview"
+              dark
+              ratioClassName="aspect-[16/11]"
+            />
           </div>
         </div>
       </section>
@@ -104,8 +112,8 @@ export default function Projects() {
       <section className="page-shell mt-8 pb-12">
         <SectionHeading
           label="Case Studies"
-          title="The projects below are filtered to show how the same system can support different business contexts."
-          subtitle="Each card opens a more detailed breakdown using a sheet instead of a fully custom modal, keeping the interaction inside the same component system."
+          title="Tap into a card when you want the full breakdown."
+          subtitle="The front of the page now gives you the fast visual read first."
           className="mb-8"
         />
 
@@ -124,6 +132,15 @@ export default function Projects() {
                 onClick={() => setSelectedProject(project)}
               >
                 <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none transition-transform duration-200 hover:-translate-y-1">
+                  <div className="p-3 pb-0">
+                    <PreviewFrame
+                      src={project.media}
+                      alt={`${project.title} animated preview`}
+                      dark
+                      ratioClassName="aspect-[16/10]"
+                      className="rounded-[24px]"
+                    />
+                  </div>
                   <CardHeader className="px-6 pt-6">
                     <div className="flex items-start justify-between gap-3">
                       <Badge variant="outline" className="rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground">
@@ -135,7 +152,7 @@ export default function Projects() {
                     <CardDescription className="text-sm leading-7">{project.summary}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4 px-6 pb-6">
-                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-3 sm:grid-cols-3">
                       {project.impact.map((item) => (
                         <div key={item.label} className="rounded-2xl border border-border/70 bg-secondary/65 p-4">
                           <p className="text-lg font-semibold tracking-[-0.04em]">{item.value}</p>
@@ -177,6 +194,15 @@ export default function Projects() {
                     {selectedProject.summary}
                   </SheetDescription>
                 </SheetHeader>
+
+                <div className="mt-6">
+                  <PreviewFrame
+                    src={selectedProject.media}
+                    alt={`${selectedProject.title} detail preview`}
+                    dark
+                    ratioClassName="aspect-[16/10]"
+                  />
+                </div>
 
                 <div className="mt-8 grid gap-6">
                   <div className="grid gap-3 sm:grid-cols-3">
@@ -225,6 +251,12 @@ export default function Projects() {
                         ))}
                       </div>
                     </div>
+                    <Button asChild className="h-12 rounded-full px-6">
+                      <Link to="/contact">
+                        Build something like this
+                        <ArrowRight className="size-4" />
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>

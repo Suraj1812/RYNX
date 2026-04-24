@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Building2, Layers3, ShieldCheck } from 'lucide-react'
+import PreviewFrame from '@/components/common/PreviewFrame'
 import PageWrapper from '@/components/layout/PageWrapper'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { Badge } from '@/components/ui/badge'
@@ -24,18 +25,26 @@ export default function About() {
   return (
     <PageWrapper>
       <section className="page-shell">
-        <div className="space-y-5">
-          <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
-            About RYNX
-          </Badge>
-          <h1 className="display-title max-w-4xl">
-            Small team, stronger system, and a much cleaner standard for what should go live.
-          </h1>
-          <p className="section-copy max-w-3xl">
-            RYNX is built around the idea that premium web presence is usually a systems problem as
-            much as a design problem. The code, components, hierarchy, and deployment path all need
-            to support the same level of confidence.
-          </p>
+        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-center">
+          <div className="space-y-5">
+            <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+              About RYNX
+            </Badge>
+            <h1 className="display-title max-w-4xl">
+              Small team, sharper system, and a much higher bar for what should go live.
+            </h1>
+            <p className="section-copy max-w-3xl">
+              RYNX is built around the idea that premium web presence is a systems problem as much
+              as a design problem, so the visuals and the delivery path need to feel equally strong.
+            </p>
+          </div>
+
+          <PreviewFrame
+            src="/visual-hero-loop.svg"
+            alt="Animated visual representing the RYNX design and delivery system"
+            dark
+            ratioClassName="aspect-[16/10]"
+          />
         </div>
       </section>
 
@@ -44,8 +53,8 @@ export default function About() {
           <div className="surface-panel p-6 sm:p-8">
             <SectionHeading
               label="Positioning"
-              title="The goal is to make the company feel more established without making the interface feel overdesigned."
-              subtitle="That usually means stronger spacing, better type hierarchy, dependency-backed components, and a frontend that can evolve without becoming inconsistent again."
+              title="Make the company feel more established without making the interface feel overworked."
+              subtitle="Stronger spacing, better type, cleaner components, and a frontend that can evolve without drifting."
               center={false}
               className="mb-6"
             />

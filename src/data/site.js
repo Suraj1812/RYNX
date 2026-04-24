@@ -31,10 +31,10 @@ export const navLinks = [
 ]
 
 export const proofPoints = [
-  'Boardroom-ready visual language',
-  'Fast, responsive delivery',
+  'Sharper first impression',
+  'Responsive on every screen',
   'SEO and metadata included',
-  'Vercel-friendly deployment',
+  'Vercel-ready build',
 ]
 
 export const homeStats = [
@@ -48,48 +48,52 @@ export const serviceLines = [
   {
     id: 'brand-sites',
     title: 'Brand and marketing websites',
+    media: '/visual-brand-motion.svg',
     summary:
-      'Executive-facing websites that look premium, load fast, and give your company a sharper first impression.',
+      'Premium websites with cleaner hierarchy, better pacing, and a stronger first impression.',
     outcomes: [
-      'Clear positioning and messaging hierarchy',
-      'Responsive layouts that hold up on every screen',
-      'Metadata, structured content, and conversion-ready sections',
+      'Sharper messaging',
+      'Responsive layouts',
+      'Conversion-ready structure',
     ],
     deliverables: ['Site strategy', 'UX writing support', 'Design system', 'Production build'],
   },
   {
     id: 'product-platforms',
     title: 'Custom platforms and portals',
+    media: '/visual-dashboard-motion.svg',
     summary:
-      'Internal tools, portals, and operating systems that reduce friction for teams, clients, and leadership.',
+      'Dashboards and portals that feel clear, fast, and easier for teams to operate.',
     outcomes: [
-      'Role-based dashboard experiences',
-      'Clean information architecture for complex workflows',
-      'Stable frontends that feel enterprise, not improvised',
+      'Role-based flows',
+      'Clear information hierarchy',
+      'Enterprise-grade frontend feel',
     ],
     deliverables: ['Product scoping', 'UI architecture', 'Frontend engineering', 'Launch support'],
   },
   {
     id: 'automation',
     title: 'Automation and AI operations',
+    media: '/visual-automation-motion.svg',
     summary:
-      'Workflow layers that remove repetitive manual work while keeping the experience human and trustworthy.',
+      'Automation layers that remove repetitive work without making the product feel robotic.',
     outcomes: [
-      'Lead routing and follow-up automation',
-      'Ops dashboards connected to live business signals',
-      'Practical AI features without gimmicky UI',
+      'Lead routing',
+      'Ops visibility',
+      'Practical AI features',
     ],
     deliverables: ['Process mapping', 'Automation design', 'Integration planning', 'Operational QA'],
   },
   {
     id: 'launch-readiness',
     title: 'Launch readiness and growth support',
+    media: '/visual-launch-motion.svg',
     summary:
-      'The final layer that makes a project feel production-grade: documentation, deployment, analytics, and handoff.',
+      'The deployment, QA, and handoff layer that makes the project feel ready to ship.',
     outcomes: [
-      'Vercel-ready deployment and routing setup',
-      'Environment variable documentation',
-      'Clean README and production checklist',
+      'Vercel deployment setup',
+      'Environment docs',
+      'Production checklist',
     ],
     deliverables: ['Deployment prep', 'QA sweep', 'SEO pass', 'Support runway'],
   },
@@ -109,12 +113,13 @@ export const caseStudies = [
     id: 'retail-ops',
     category: 'Internal Systems',
     title: 'Global retail operations portal',
+    media: '/visual-dashboard-motion.svg',
     summary:
-      'A single operating view for leadership, approvals, and rollout coordination across multiple markets.',
+      'A cleaner operating view for approvals, reporting, and rollout coordination.',
     challenge:
-      'The team was juggling spreadsheets, scattered approvals, and inconsistent reporting across regions, which slowed every launch.',
+      'The team was juggling spreadsheets, scattered approvals, and inconsistent reporting across regions.',
     solution:
-      'We restructured the workflow into a dashboard-led portal with cleaner states, approvals, and reporting surfaces that leadership could read quickly.',
+      'We turned the flow into a dashboard-led portal with clearer states, approvals, and reporting.',
     impact: [
       { label: 'approval time', value: '-34%' },
       { label: 'market rollout clarity', value: '+1 shared view' },
@@ -127,12 +132,13 @@ export const caseStudies = [
     id: 'b2b-growth',
     category: 'Web Experience',
     title: 'Premium B2B growth website',
+    media: '/visual-brand-motion.svg',
     summary:
-      'A conversion-focused website refresh that made the company feel larger, sharper, and easier to trust.',
+      'A visual refresh that made the company feel sharper, larger, and easier to trust.',
     challenge:
-      'The old site looked generic and overused startup patterns that did not match the company’s pricing, clients, or ambition.',
+      'The old site looked generic and did not match the company’s pricing, clients, or ambition.',
     solution:
-      'We introduced a restrained visual system, stronger typography, a better content hierarchy, and a cleaner lead path without the usual AI-generated feel.',
+      'We introduced stronger type, better hierarchy, and a cleaner lead path without the AI-made look.',
     impact: [
       { label: 'brand perception', value: 'upgraded' },
       { label: 'content clarity', value: '+structured messaging' },
@@ -145,12 +151,13 @@ export const caseStudies = [
     id: 'service-intake',
     category: 'Automation',
     title: 'Lead intake and response workflow',
+    media: '/visual-automation-motion.svg',
     summary:
-      'A contact flow designed to feel premium to the user and operationally clean for the team receiving enquiries.',
+      'A lead flow built to feel premium for users and operationally clean for the team.',
     challenge:
-      'The business needed a reliable contact experience with stronger validation, better signals, and cleaner deployment behaviour.',
+      'The business needed a more reliable contact experience with stronger validation and clearer signals.',
     solution:
-      'We built a production-friendly form flow with structured payloads, deployment notes, and a Vercel-compatible contact endpoint.',
+      'We built a production-friendly flow with structured payloads and a Vercel-compatible endpoint.',
     impact: [
       { label: 'enquiry quality', value: 'higher signal' },
       { label: 'ops readiness', value: 'documented' },
@@ -167,17 +174,17 @@ export const processSteps = [
   {
     title: 'Clarify the business signal',
     description:
-      'We start by tightening the message, audience, and business outcome so the design and build decisions stay disciplined.',
+      'Lock the audience, message, and business goal first.',
   },
   {
     title: 'Design the premium layer',
     description:
-      'Layout, type, spacing, color, motion, and content hierarchy are shaped to feel deliberate rather than generated.',
+      'Shape layout, type, motion, and content so it feels deliberate.',
   },
   {
     title: 'Ship the production build',
     description:
-      'We wire the frontend, metadata, deployment setup, contact flow, and documentation so launch is straightforward.',
+      'Ship the frontend, metadata, deployment setup, and handoff cleanly.',
   },
 ]
 
@@ -201,8 +208,8 @@ export const principles = [
 
 export const aboutHighlights = [
   'Independent product and web studio',
-  'Built for ambitious teams that want a cleaner digital presence',
-  'Focused on websites, software surfaces, and operational clarity',
+  'Built for ambitious teams that want a sharper digital presence',
+  'Focused on websites, software surfaces, and clean operations',
 ]
 
 export const faqItems = [
@@ -232,4 +239,3 @@ export const contactChannels = [
 
 export const timelineOptions = ['As soon as possible', 'Within 2 weeks', 'This month', 'Next quarter']
 export const budgetOptions = ['Under $5k', '$5k to $15k', '$15k to $30k', '$30k+', 'Need guidance']
-

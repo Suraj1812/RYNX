@@ -1,0 +1,48 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bar-a { animation: riseA 3.6s ease-in-out infinite; transform-origin: bottom; }
+    .bar-b { animation: riseB 4.1s ease-in-out infinite; transform-origin: bottom; }
+    .bar-c { animation: riseC 3.8s ease-in-out infinite; transform-origin: bottom; }
+    .cursor { animation: cursorMove 5.5s ease-in-out infinite; transform-origin: center; }
+    @keyframes riseA {
+      0%, 100% { transform: scaleY(0.68); }
+      50% { transform: scaleY(1); }
+    }
+    @keyframes riseB {
+      0%, 100% { transform: scaleY(0.78); }
+      50% { transform: scaleY(1.08); }
+    }
+    @keyframes riseC {
+      0%, 100% { transform: scaleY(0.56); }
+      50% { transform: scaleY(0.96); }
+    }
+    @keyframes cursorMove {
+      0%, 100% { transform: translate(0px, 0px); }
+      50% { transform: translate(18px, -12px); }
+    }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="720" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081321"/>
+      <stop offset="1" stop-color="#143251"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" rx="36" fill="url(#bg)"/>
+  <rect x="44" y="44" width="632" height="392" rx="28" fill="#0D1D32" stroke="white" stroke-opacity="0.08"/>
+  <rect x="78" y="86" width="264" height="152" rx="24" fill="#F6F2EA"/>
+  <rect x="106" y="116" width="96" height="12" rx="6" fill="#D5B17F"/>
+  <rect x="106" y="142" width="186" height="18" rx="9" fill="#102744"/>
+  <rect x="106" y="176" width="140" height="12" rx="6" fill="#91A5BF"/>
+
+  <rect x="376" y="86" width="266" height="312" rx="24" fill="#112C47"/>
+  <path d="M408 334H610" stroke="white" stroke-opacity="0.1" stroke-width="2"/>
+  <rect class="bar-a" x="430" y="206" width="34" height="128" rx="14" fill="#F4ECE1"/>
+  <rect class="bar-b" x="486" y="172" width="34" height="162" rx="14" fill="#D7B587"/>
+  <rect class="bar-c" x="542" y="236" width="34" height="98" rx="14" fill="#89AAC8"/>
+  <rect class="bar-a" x="598" y="144" width="34" height="190" rx="14" fill="#204F7D"/>
+
+  <g class="cursor">
+    <circle cx="512" cy="178" r="18" fill="#F5F0E7"/>
+    <path d="M506 171L520 178L512 183L506 171Z" fill="#0C1B2F"/>
+  </g>
+</svg>
