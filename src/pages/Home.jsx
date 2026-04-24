@@ -9,7 +9,6 @@ import {
   Workflow,
 } from 'lucide-react'
 import heroImage from '@/assets/hero.png'
-import BrandLockup from '@/components/brand/BrandLockup'
 import CountUpStat from '@/components/common/CountUpStat'
 import PreviewFrame from '@/components/common/PreviewFrame'
 import SignalCarousel from '@/components/common/SignalCarousel'
@@ -81,7 +80,6 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="space-y-5">
-              <BrandLockup className="w-fit rounded-full border border-border/70 bg-card/70 px-3 py-2 backdrop-blur-md" />
               <h1 className="display-title max-w-5xl">
                 Websites and product surfaces that feel
                 {' '}

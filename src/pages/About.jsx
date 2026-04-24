@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Building2, Layers3, ShieldCheck } from 'lucide-react'
-import BrandLockup from '@/components/brand/BrandLockup'
 import CountUpStat from '@/components/common/CountUpStat'
 import PreviewFrame from '@/components/common/PreviewFrame'
 import PageWrapper from '@/components/layout/PageWrapper'
@@ -34,7 +33,6 @@ export default function About() {
             >
               About RYNX
             </Badge>
-            <BrandLockup className="w-fit rounded-full border border-border/70 bg-card/70 px-3 py-2 backdrop-blur-md" />
             <h1 className="display-title max-w-5xl">
               Small team. Senior judgment. Higher standards than most bigger shops.
             </h1>

@@ -7,24 +7,21 @@ export default function SmoothScrollProvider({ children }) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.1,
+      autoRaf: true,
+      anchors: true,
+      lerp: 0.075,
+      wheelMultiplier: 0.9,
       smoothWheel: true,
-      touchMultiplier: 1.2,
-      easing: (value) => 1 - Math.pow(1 - value, 4),
+      syncTouch: true,
+      syncTouchLerp: 0.06,
+      touchMultiplier: 1.05,
+      touchInertiaExponent: 1.5,
+      stopInertiaOnNavigate: true,
     })
 
     lenisRef.current = lenis
 
-    let frameId = 0
-    const raf = (time) => {
-      lenis.raf(time)
-      frameId = window.requestAnimationFrame(raf)
-    }
-
-    frameId = window.requestAnimationFrame(raf)
-
     return () => {
-      window.cancelAnimationFrame(frameId)
       lenis.destroy()
       lenisRef.current = null
     }

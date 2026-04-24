@@ -17,7 +17,7 @@ export default function BackToTop() {
   }, [])
 
   const scrollToTop = () => {
-    scrollTo(0, { duration: 1 })
+    scrollTo(0, { lerp: 0.08 })
   }
 
   return (
