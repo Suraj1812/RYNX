@@ -1,8 +1,26 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { HiArrowRight } from 'react-icons/hi'
+import {
+  ArrowRight,
+  Bot,
+  Building2,
+  LayoutPanelTop,
+  MonitorSmartphone,
+  ShieldCheck,
+  Workflow,
+} from 'lucide-react'
 import PageWrapper from '@/components/layout/PageWrapper'
 import SectionHeading from '@/components/ui/SectionHeading'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import {
   caseStudies,
   homeStats,
@@ -13,239 +31,294 @@ import {
 import { usePageMeta } from '@/hooks/usePageMeta'
 import { fadeUp, staggerContainer } from '@/utils/animations'
 
+const differentiators = [
+  {
+    icon: Building2,
+    title: 'Enterprise signal',
+    description:
+      'Typography, spacing, structure, and motion are tuned to feel credible in front of buyers, operators, and leadership.',
+  },
+  {
+    icon: Workflow,
+    title: 'Operational clarity',
+    description:
+      'The frontend is designed to support real handoffs, clean navigation, and future growth instead of one-off visual drama.',
+  },
+  {
+    icon: Bot,
+    title: 'No AI-template energy',
+    description:
+      'The layouts are restrained, systems-led, and dependency-backed so the site reads like a product organization, not a generated landing page.',
+  },
+]
+
+const serviceIcons = {
+  'brand-sites': MonitorSmartphone,
+  'product-platforms': LayoutPanelTop,
+  automation: Workflow,
+  'launch-readiness': ShieldCheck,
+}
+
 export default function Home() {
   usePageMeta({
     title: 'Home',
     description:
-      'RYNX builds premium websites, software surfaces, and automation-ready systems for businesses that want a sharper digital presence.',
+      'RYNX builds premium websites, software surfaces, and launch-ready digital systems for teams that want a cleaner, more credible online presence.',
     path: '/',
   })
 
   return (
     <PageWrapper>
-      <section className="hero-section">
-        <div className="page-orb page-orb--top" />
-        <div className="page-orb page-orb--bottom" />
-
-        <div className="section-container hero-grid">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.span variants={fadeUp} className="hero-tag">
-              Premium digital systems for serious teams
-            </motion.span>
-
-            <motion.h1 variants={fadeUp} className="hero-title">
-              Websites and software surfaces that feel <span className="display-accent">boardroom ready</span> from day one.
-            </motion.h1>
-
-            <motion.p variants={fadeUp} className="hero-copy">
-              RYNX helps ambitious companies upgrade their digital presence with sharper
-              websites, cleaner internal tools, and automation-ready frontend systems that
-              look credible the moment someone lands on them.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="action-row">
-              <Link to="/contact" className="button button--primary">
-                Start a project
-                <HiArrowRight />
-              </Link>
-              <Link to="/projects" className="button button--secondary">
-                See selected work
-              </Link>
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-6">
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
+              <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+                Rebuilt on dependencies
+              </Badge>
+              <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-muted-foreground">
+                Light and dark mode
+              </Badge>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="hero-signal-row">
+            <motion.h1 variants={fadeUp} className="display-title max-w-4xl">
+              Digital systems that look <span className="text-primary">expensive</span>, ship cleanly, and stop giving AI-generated first impressions.
+            </motion.h1>
+
+            <motion.p variants={fadeUp} className="section-copy max-w-3xl">
+              RYNX helps ambitious teams move from generic-looking web presence to a more
+              structured, corporate-grade digital layer using a real component system, modern
+              frontend dependencies, and production-ready delivery for Vercel.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+              <Button asChild size="lg" className="h-12 rounded-full px-6">
+                <Link to="/contact">
+                  Start a project
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-6">
+                <Link to="/projects">Review selected work</Link>
+              </Button>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-2">
               {proofPoints.map((point) => (
-                <span key={point} className="pill">
-                  <span className="pill__dot" />
+                <Badge
+                  key={point}
+                  variant="outline"
+                  className="rounded-full border-border/70 bg-background/80 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground"
+                >
                   {point}
-                </span>
+                </Badge>
               ))}
             </motion.div>
           </motion.div>
 
-          <motion.aside
-            initial={{ opacity: 0, x: 28, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="hero-panel"
+          <motion.div
+            initial={{ opacity: 0, y: 18, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.45, delay: 0.14 }}
+            className="surface-panel p-4 sm:p-5"
           >
-            <p className="cluster-label">What the work needs to signal</p>
-            <h2 className="hero-panel__title">Premium, clear, reliable, and ready to launch.</h2>
-            <p className="hero-panel__copy">
-              The goal is not to look trendy for one month. The goal is to look sharp enough for
-              enterprise buyers, confident enough for leadership, and stable enough to put live on Vercel.
-            </p>
+            <div className="grid gap-4">
+              <Card className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
+                <CardHeader className="px-5 pt-5">
+                  <CardTitle>What changed in this rebuild</CardTitle>
+                  <CardDescription>
+                    The frontend is now aligned around a stronger component stack instead of a mostly handcrafted visual layer.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 px-5 pb-5">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {homeStats.map((stat) => (
+                      <div key={stat.label} className="rounded-[20px] border border-border/70 bg-secondary/70 p-4">
+                        <p className="stat-value">{stat.value}</p>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
-            <div className="metrics-grid">
-              <div className="metric-card">
-                <p className="metric-card__value">01</p>
-                <p className="metric-card__label">Visual language that feels mature instead of generated.</p>
-                <span className="metric-card__tag">Design discipline</span>
-              </div>
-              <div className="metric-card">
-                <p className="metric-card__value">02</p>
-                <p className="metric-card__label">Content structure that sells the business without noise.</p>
-                <span className="metric-card__tag">Messaging clarity</span>
-              </div>
-              <div className="metric-card">
-                <p className="metric-card__value">03</p>
-                <p className="metric-card__label">Deployment, metadata, and contact flows aligned for launch.</p>
-                <span className="metric-card__tag">Production readiness</span>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {differentiators.map((item) => {
+                  const Icon = item.icon
+
+                  return (
+                    <Card key={item.title} className="rounded-[24px] border-border/70 bg-card/90 py-0 shadow-none">
+                      <CardHeader className="px-4 pt-4">
+                        <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                          <Icon className="size-5" />
+                        </div>
+                        <CardTitle className="pt-3 text-sm">{item.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="px-4 pb-4 text-sm leading-6 text-muted-foreground">
+                        {item.description}
+                      </CardContent>
+                    </Card>
+                  )
+                })}
               </div>
             </div>
-          </motion.aside>
+          </motion.div>
         </div>
       </section>
 
-      <section className="page-section page-section--tight">
-        <div className="section-container stat-strip">
-          {homeStats.map((stat) => (
-            <div key={stat.label} className="surface-card">
-              <p className="metric-card__value">{stat.value}</p>
-              <p className="metric-card__label">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Service Lanes"
+          title="The work now sits on a proper UI foundation, not a stitched-together landing page aesthetic."
+          subtitle="Each lane is built to feel premium, reusable, and more productized in the long run."
+        />
 
-      <section className="page-section">
-        <div className="section-container">
-          <SectionHeading
-            label="Core Services"
-            title="What RYNX builds when the website has to look expensive and the product still has to work."
-            subtitle="The sweet spot is premium presentation backed by clean implementation, not just cosmetic redesign."
-          />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {serviceLines.map((service) => {
+            const Icon = serviceIcons[service.id] ?? LayoutPanelTop
 
-          <div className="card-grid card-grid--two">
-            {serviceLines.map((service) => (
-              <motion.article
+            return (
+              <motion.div
                 key={service.id}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="surface-card surface-card--interactive"
+                viewport={{ once: true, margin: '-60px' }}
               >
-                <h3 className="service-card__title">{service.title}</h3>
-                <p className="service-card__summary">{service.summary}</p>
-                <ul className="detail-list">
-                  {service.outcomes.map((outcome) => (
-                    <li key={outcome}>{outcome}</li>
-                  ))}
-                </ul>
-                <div className="tag-list">
-                  {service.deliverables.map((item) => (
-                    <span key={item} className="tag">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+                  <CardHeader className="gap-3 px-6 pt-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="size-5" />
+                      </div>
+                      <Badge variant="outline" className="rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground">
+                        {service.id.replace('-', ' ')}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl tracking-[-0.03em]">{service.title}</CardTitle>
+                    <CardDescription className="text-sm leading-7">{service.summary}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4 px-6 pb-6">
+                    <div className="grid gap-2">
+                      {service.outcomes.map((outcome) => (
+                        <div key={outcome} className="rounded-2xl border border-border/70 bg-secondary/65 px-4 py-3 text-sm text-muted-foreground">
+                          {outcome}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {service.deliverables.map((deliverable) => (
+                        <Badge key={deliverable} variant="secondary" className="rounded-full px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em]">
+                          {deliverable}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )
+          })}
         </div>
       </section>
 
-      <section className="page-section page-section--muted">
-        <div className="section-container">
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="surface-panel p-6 sm:p-8">
           <SectionHeading
-            label="Selected Work"
-            title="Representative engagements that show the level of polish we aim for."
-            subtitle="These are the kinds of systems, websites, and workflows RYNX is set up to deliver."
+            label="Delivery Model"
+            title="How the work stays structured instead of drifting back into template territory."
+            subtitle="The stack is dependency-led, but the judgment still comes from how the system is composed."
+            center={false}
+            className="mb-8"
           />
 
-          <div className="card-grid card-grid--three">
-            {caseStudies.map((study) => (
-              <motion.article
-                key={study.id}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="surface-card surface-card--interactive"
-              >
-                <div className="case-card__top">
-                  <span className="case-card__category">{study.category}</span>
-                </div>
-                <h3 className="case-card__title">{study.title}</h3>
-                <p className="case-card__summary">{study.summary}</p>
-                <div className="case-card__impact">
-                  {study.impact.map((item) => (
-                    <div key={item.label} className="case-card__impact-item">
-                      <p className="case-card__impact-value">{item.value}</p>
-                      <p className="case-card__impact-label">{item.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </div>
-
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link to="/projects" className="inline-link">
-              Open the full work page
-              <HiArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section">
-        <div className="section-container split-layout">
-          <div>
-            <SectionHeading
-              label="Working Model"
-              title="How the engagement stays structured from concept to launch."
-              subtitle="The process is intentionally small and direct so the work keeps moving and the output still feels premium."
-              center={false}
-            />
-          </div>
-
-          <div className="process-grid">
+          <div className="grid gap-4 md:grid-cols-3">
             {processSteps.map((step, index) => (
-              <motion.article
-                key={step.title}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="surface-card"
-              >
-                <div className="process-step__index">{index + 1}</div>
-                <h3 className="process-step__title">{step.title}</h3>
-                <p className="process-step__description">{step.description}</p>
-              </motion.article>
+              <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
+                <CardHeader className="px-5 pt-5">
+                  <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.2em] text-primary/80">
+                    Step {index + 1}
+                  </Badge>
+                  <CardTitle className="pt-3 text-lg">{step.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="px-5 pb-5 text-sm leading-7 text-muted-foreground">
+                  {step.description}
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="page-section page-section--tight">
-        <div className="section-container">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="surface-card"
-          >
-            <p className="cluster-label">Ready to move</p>
-            <h2 className="section-title" style={{ marginTop: '0.8rem' }}>
-              If the current site feels generic, we can fix the first impression and the production setup at the same time.
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Selected Engagements"
+          title="Representative work that matches the visual and delivery standard we’re aiming for."
+          subtitle="Not startup-noise layouts. Structured digital surfaces with clearer hierarchy and more stable handoff."
+        />
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          {caseStudies.map((study) => (
+            <motion.div
+              key={study.id}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+            >
+              <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+                <CardHeader className="px-6 pt-6">
+                  <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    {study.category}
+                  </Badge>
+                  <CardTitle className="pt-3 text-xl tracking-[-0.03em]">{study.title}</CardTitle>
+                  <CardDescription className="text-sm leading-7">{study.summary}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 px-6 pb-6">
+                  <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                    {study.impact.map((item) => (
+                      <div key={item.label} className="rounded-2xl border border-border/70 bg-secondary/65 p-4">
+                        <p className="text-lg font-semibold tracking-[-0.04em]">{item.value}</p>
+                        <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
+                          {item.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <Separator />
+                  <div className="flex flex-wrap gap-2">
+                    {study.services.map((service) => (
+                      <Badge key={service} variant="secondary" className="rounded-full px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em]">
+                        {service}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="surface-panel flex flex-col gap-6 px-6 py-7 sm:px-8 sm:py-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="space-y-4">
+            <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+              Ready for the next pass
+            </Badge>
+            <h2 className="section-title max-w-3xl">
+              If the current site still feels generic, we can keep pushing it until it reads like a serious company.
             </h2>
-            <p className="section-copy">
-              The strongest outcome is a website or platform that looks intentional, reads clearly, and ships with enough operational discipline to go live without last-minute chaos.
+            <p className="section-copy max-w-2xl">
+              This rebuild moved the project toward a real component stack. The next level would be
+              tailoring the copy, assets, and case evidence even more tightly to your actual business.
             </p>
-            <div className="action-row">
-              <Link to="/contact" className="button button--primary">
-                Book the build
-                <HiArrowRight />
-              </Link>
-              <Link to="/services" className="button button--ghost">
-                Explore services
-              </Link>
-            </div>
-          </motion.div>
+          </div>
+          <Button asChild size="lg" className="h-12 rounded-full px-6">
+            <Link to="/contact">
+              Let&apos;s make it sharper
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
         </div>
       </section>
     </PageWrapper>

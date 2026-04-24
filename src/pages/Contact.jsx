@@ -1,12 +1,20 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Mail, MapPin, MessageSquareShare, TimerReset } from 'lucide-react'
 import PageWrapper from '@/components/layout/PageWrapper'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import {
-  budgetOptions,
-  contactChannels,
-  serviceLines,
-  timelineOptions,
-} from '@/data/site'
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
+import { budgetOptions, contactChannels, serviceLines, timelineOptions } from '@/data/site'
 import { usePageMeta } from '@/hooks/usePageMeta'
 import { fadeUp, staggerContainer } from '@/utils/animations'
 
@@ -21,11 +29,13 @@ const initialFormState = {
   website: '',
 }
 
+const infoIcons = [Mail, MapPin, TimerReset, MessageSquareShare]
+
 export default function Contact() {
   usePageMeta({
     title: 'Contact',
     description:
-      'Start a project with RYNX for premium websites, internal platforms, and automation-ready digital systems.',
+      'Start a project with RYNX for premium websites, structured software surfaces, and launch-ready frontend systems.',
     path: '/contact',
   })
 
@@ -33,14 +43,17 @@ export default function Contact() {
   const [form, setForm] = useState(initialFormState)
   const [status, setStatus] = useState({ type: '', message: '' })
 
-  const serviceOptions = useMemo(() => serviceLines.map((item) => item.title), [])
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setForm((currentForm) => ({ ...currentForm, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSelectChange = (field, value) => {
+    setForm((currentForm) => ({ ...currentForm, [field]: value }))
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
     try {
       setLoading(true)
@@ -57,7 +70,7 @@ export default function Contact() {
       const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.message || 'Unable to send your enquiry right now.')
+        throw new Error(result.message || 'Unable to send the enquiry right now.')
       }
 
       setStatus({
@@ -68,7 +81,7 @@ export default function Contact() {
     } catch (error) {
       setStatus({
         type: 'error',
-        message: error.message || 'Something went wrong. Please try again in a moment.',
+        message: error.message || 'Something went wrong. Please try again shortly.',
       })
     } finally {
       setLoading(false)
@@ -77,185 +90,210 @@ export default function Contact() {
 
   return (
     <PageWrapper>
-      <section className="hero-section">
-        <div className="page-orb page-orb--top" />
-        <div className="section-container">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.span variants={fadeUp} className="hero-tag">
-              Start the conversation
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="hero-title">
-              Tell us what needs to be sharper, cleaner, or more production ready.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="hero-copy">
-              Use the form below for websites, software surfaces, internal tools, or automation
-              work. The project is wired for a Vercel-friendly contact flow, so handoff is clean when you go live.
-            </motion.p>
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5">
+          <motion.div variants={fadeUp}>
+            <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+              Contact RYNX
+            </Badge>
           </motion.div>
-        </div>
+          <motion.h1 variants={fadeUp} className="display-title max-w-4xl">
+            Give us the problem, the deadline, and where the current UI still feels weak.
+          </motion.h1>
+          <motion.p variants={fadeUp} className="section-copy max-w-3xl">
+            This form is now component-driven and Vercel-ready. In development it validates locally,
+            and in production it can send via Resend once the environment variables are configured.
+          </motion.p>
+        </motion.div>
       </section>
 
-      <section className="page-section">
-        <div className="section-container">
-          <div className="contact-layout">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="contact-stack"
-            >
-              <motion.div variants={fadeUp} className="surface-card">
-                <p className="cluster-label">What to include</p>
-                <div className="list-panel" style={{ marginTop: '1rem' }}>
-                  {[
-                    'What the company does and where the current site or workflow feels weak.',
-                    'What should look more premium after the redesign.',
-                    'Your timeline, internal decision-maker, and ideal launch window.',
-                  ].map((item) => (
-                    <div key={item} className="list-panel__item">
-                      <span className="list-panel__dot" />
-                      <div className="list-panel__content">
-                        <span>{item}</span>
-                      </div>
-                    </div>
-                  ))}
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="space-y-4">
+            <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+              <CardHeader className="px-6 pt-6">
+                <CardTitle className="text-xl tracking-[-0.03em]">What to include</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 px-6 pb-6 text-sm leading-7 text-muted-foreground">
+                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
+                  What currently feels too generic or not premium enough.
                 </div>
-              </motion.div>
+                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
+                  The exact business outcome the new site or system needs to support.
+                </div>
+                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-3">
+                  The timeline, decision-maker, and the level of urgency around launch.
+                </div>
+              </CardContent>
+            </Card>
 
-              <motion.div variants={fadeUp} className="surface-card">
-                <p className="cluster-label">Contact details</p>
-                <div className="list-panel" style={{ marginTop: '1rem' }}>
-                  {contactChannels.map((item) => (
-                    <div key={item.label} className="contact-row">
-                      <span className="list-panel__dot" />
+            <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+              <CardHeader className="px-6 pt-6">
+                <CardTitle className="text-xl tracking-[-0.03em]">Contact details</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 px-6 pb-6">
+                {contactChannels.map((item, index) => {
+                  const Icon = infoIcons[index] ?? Mail
+
+                  return (
+                    <div key={item.label} className="flex items-start gap-3 rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-4">
+                      <div className="mt-0.5 flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="size-5" />
+                      </div>
                       <div>
-                        <p className="contact-row__label">{item.label}</p>
-                        <p className="contact-row__value">{item.value}</p>
+                        <p className="text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">
+                          {item.label}
+                        </p>
+                        <p className="mt-2 text-sm leading-7 text-foreground">{item.value}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
+                  )
+                })}
+              </CardContent>
+            </Card>
+          </div>
 
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <form onSubmit={handleSubmit} className="surface-card">
-                <div className="form-grid form-grid--two">
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className="form-field"
-                    required
-                  />
-                  <input
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder="Company"
-                    className="form-field"
-                  />
-                </div>
-
-                <div className="form-grid form-grid--two" style={{ marginTop: '1rem' }}>
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="Work email"
-                    className="form-field"
-                    required
-                  />
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    className="form-select"
-                    required
-                  >
-                    <option value="">Select service focus</option>
-                    {serviceOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+          <Card className="rounded-[30px] border-border/70 bg-card/92 py-0 shadow-none">
+            <CardHeader className="px-6 pt-6">
+              <CardTitle className="text-xl tracking-[-0.03em]">Project brief</CardTitle>
+            </CardHeader>
+            <CardContent className="px-6 pb-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">Your name</label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={form.name}
+                      onChange={handleInputChange}
+                      className="h-11 rounded-2xl bg-background/80 px-4"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="company" className="text-sm font-medium">Company</label>
+                    <Input
+                      id="company"
+                      name="company"
+                      value={form.company}
+                      onChange={handleInputChange}
+                      className="h-11 rounded-2xl bg-background/80 px-4"
+                    />
+                  </div>
                 </div>
 
-                <div className="form-grid form-grid--two" style={{ marginTop: '1rem' }}>
-                  <select
-                    name="timeline"
-                    value={form.timeline}
-                    onChange={handleChange}
-                    className="form-select"
-                    required
-                  >
-                    <option value="">Expected timeline</option>
-                    {timelineOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="budget"
-                    value={form.budget}
-                    onChange={handleChange}
-                    className="form-select"
-                    required
-                  >
-                    <option value="">Budget range</option>
-                    {budgetOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">Work email</label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={handleInputChange}
+                      className="h-11 rounded-2xl bg-background/80 px-4"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="service" className="text-sm font-medium">Service focus</label>
+                    <Select value={form.service} onValueChange={(value) => handleSelectChange('service', value)}>
+                      <SelectTrigger id="service" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {serviceLines.map((service) => (
+                          <SelectItem key={service.id} value={service.title}>
+                            {service.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
-                <div className="hidden-field" aria-hidden="true">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label htmlFor="timeline" className="text-sm font-medium">Timeline</label>
+                    <Select value={form.timeline} onValueChange={(value) => handleSelectChange('timeline', value)}>
+                      <SelectTrigger id="timeline" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                        <SelectValue placeholder="Choose a timeline" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {timelineOptions.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="budget" className="text-sm font-medium">Budget</label>
+                    <Select value={form.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
+                      <SelectTrigger id="budget" className="h-11 w-full rounded-2xl bg-background/80 px-4">
+                        <SelectValue placeholder="Select a budget" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {budgetOptions.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="hidden">
                   <label htmlFor="website">Leave this field empty</label>
-                  <input
+                  <Input
                     id="website"
                     name="website"
                     value={form.website}
-                    onChange={handleChange}
-                    tabIndex={-1}
+                    onChange={handleInputChange}
                     autoComplete="off"
+                    tabIndex={-1}
                   />
                 </div>
 
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Tell us what needs to change, what should feel more premium, and what outcome matters most."
-                  className="form-textarea"
-                  style={{ marginTop: '1rem' }}
-                  required
-                />
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">Project context</label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={form.message}
+                    onChange={handleInputChange}
+                    className="min-h-40 rounded-[24px] bg-background/80 px-4 py-4"
+                    placeholder="Tell us what feels off today, what should feel more premium after the rebuild, and what success looks like."
+                    required
+                  />
+                </div>
 
-                <p className="form-helper" style={{ marginTop: '0.9rem' }}>
-                  In development, the form validates locally. In production on Vercel, it can send via Resend once the environment variables in the README are configured.
-                </p>
+                <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-4 py-4 text-sm leading-7 text-muted-foreground">
+                  In local development the endpoint validates and returns a success response without
+                  sending live email. In production on Vercel, add the Resend variables from the README to enable delivery.
+                </div>
 
-                <button type="submit" disabled={loading} className="button button--primary" style={{ marginTop: '1rem' }}>
+                <Button type="submit" size="lg" className="h-12 rounded-full px-6" disabled={loading}>
                   {loading ? 'Sending enquiry...' : 'Send enquiry'}
-                </button>
+                </Button>
 
                 {status.message ? (
                   <div
-                    className={`status-banner ${status.type === 'success' ? 'status-banner--success' : 'status-banner--error'}`}
+                    className={`rounded-[22px] border px-4 py-4 text-sm leading-7 ${
+                      status.type === 'success'
+                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+                        : 'border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300'
+                    }`}
                   >
                     {status.message}
                   </div>
                 ) : null}
               </form>
-            </motion.div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </PageWrapper>

@@ -1,160 +1,143 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { HiArrowRight } from 'react-icons/hi'
+import { ArrowRight, Building2, Layers3, ShieldCheck } from 'lucide-react'
 import PageWrapper from '@/components/layout/PageWrapper'
 import SectionHeading from '@/components/ui/SectionHeading'
-import {
-  aboutHighlights,
-  principles,
-  processSteps,
-} from '@/data/site'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { aboutHighlights, principles, processSteps } from '@/data/site'
 import { usePageMeta } from '@/hooks/usePageMeta'
-import { fadeUp, staggerContainer } from '@/utils/animations'
+import { fadeUp } from '@/utils/animations'
+
+const principleIcons = [Building2, Layers3, ShieldCheck]
 
 export default function About() {
   usePageMeta({
     title: 'About',
     description:
-      'Learn how RYNX approaches product websites, software surfaces, and launch-ready frontend delivery with a premium, production-first mindset.',
+      'Learn how RYNX approaches websites, software surfaces, and launch-ready frontend delivery with a more disciplined, dependency-led product mindset.',
     path: '/about',
   })
 
   return (
     <PageWrapper>
-      <section className="hero-section">
-        <div className="page-orb page-orb--top" />
-        <div className="section-container">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.span variants={fadeUp} className="hero-tag">
-              About RYNX
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="hero-title">
-              A small studio with a strong bias toward clarity, polish, and clean launch execution.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="hero-copy">
-              RYNX exists for teams that have outgrown generic-looking websites and rushed software
-              surfaces. The work is focused on premium digital presence, thoughtful structure, and
-              shipping without production shortcuts.
-            </motion.p>
-          </motion.div>
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-5">
+          <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+            About RYNX
+          </Badge>
+          <h1 className="display-title max-w-4xl">
+            Small team, stronger system, and a much cleaner standard for what should go live.
+          </h1>
+          <p className="section-copy max-w-3xl">
+            RYNX is built around the idea that premium web presence is usually a systems problem as
+            much as a design problem. The code, components, hierarchy, and deployment path all need
+            to support the same level of confidence.
+          </p>
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="section-container">
-          <div className="split-layout">
-            <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <SectionHeading
-                label="Positioning"
-                title="The aim is simple: make the company feel more established without adding noise."
-                subtitle="That means deliberate typography, better pacing, stronger content hierarchy, and a frontend that is ready to move into production instead of stopping at mockup quality."
-                center={false}
-              />
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="surface-card"
-            >
-              <p className="cluster-label">What teams usually want from us</p>
-              <div className="list-panel" style={{ marginTop: '1rem' }}>
-                {aboutHighlights.map((item) => (
-                  <motion.div key={item} variants={fadeUp} className="list-panel__item">
-                    <span className="list-panel__dot" />
-                    <div className="list-panel__content">
-                      <strong>{item}</strong>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="surface-panel p-6 sm:p-8">
+            <SectionHeading
+              label="Positioning"
+              title="The goal is to make the company feel more established without making the interface feel overdesigned."
+              subtitle="That usually means stronger spacing, better type hierarchy, dependency-backed components, and a frontend that can evolve without becoming inconsistent again."
+              center={false}
+              className="mb-6"
+            />
+            <Button asChild className="rounded-full">
+              <Link to="/contact">
+                Start a brief
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
           </div>
+
+          <Card className="rounded-[30px] border-border/70 bg-card/92 py-0 shadow-none">
+            <CardHeader className="px-6 pt-6">
+              <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground">
+                What teams usually need
+              </Badge>
+            </CardHeader>
+            <CardContent className="space-y-4 px-6 pb-6">
+              {aboutHighlights.map((item, index) => (
+                <div key={item}>
+                  <div className="rounded-[22px] border border-border/70 bg-secondary/65 px-5 py-4 text-sm leading-7 text-muted-foreground">
+                    {item}
+                  </div>
+                  {index !== aboutHighlights.length - 1 ? <Separator className="my-4" /> : null}
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      <section className="page-section page-section--muted">
-        <div className="section-container">
-          <SectionHeading
-            label="Principles"
-            title="The standards behind the work."
-            subtitle="These are the rules that keep the output from drifting into generic agency territory."
-          />
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Principles"
+          title="The standards behind the redesign direction."
+          subtitle="These are the rules that keep the work from sliding back into generic agency output."
+        />
 
-          <div className="card-grid card-grid--three">
-            {principles.map((principle) => (
-              <motion.article
+        <div className="grid gap-4 md:grid-cols-3">
+          {principles.map((principle, index) => {
+            const Icon = principleIcons[index] ?? Building2
+
+            return (
+              <motion.div
                 key={principle.title}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
-                className="surface-card surface-card--interactive"
               >
-                <h3 className="service-card__title">{principle.title}</h3>
-                <p className="service-card__summary">{principle.description}</p>
-              </motion.article>
-            ))}
-          </div>
+                <Card className="h-full rounded-[26px] border-border/70 bg-card/92 py-0 shadow-none">
+                  <CardHeader className="px-5 pt-5">
+                    <div className="flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="size-5" />
+                    </div>
+                    <CardTitle className="pt-3 text-lg">{principle.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="px-5 pb-5 text-sm leading-7 text-muted-foreground">
+                    {principle.description}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )
+          })}
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="section-container split-layout">
-          <div>
-            <SectionHeading
-              label="How Work Moves"
-              title="Direct collaboration, small loops, and no ornamental complexity."
-              subtitle="The process stays lightweight because the main goal is to keep judgment close to execution."
-              center={false}
-            />
-          </div>
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="surface-panel p-6 sm:p-8">
+          <SectionHeading
+            label="Workflow"
+            title="The same operating rhythm still matters after the visual stack changes."
+            subtitle="Good dependencies help, but the sequence of decisions still decides whether the output feels sharp."
+            center={false}
+            className="mb-8"
+          />
 
-          <div className="process-grid">
+          <div className="grid gap-4 md:grid-cols-3">
             {processSteps.map((step, index) => (
-              <motion.article
-                key={step.title}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="surface-card"
-              >
-                <div className="process-step__index">{index + 1}</div>
-                <h3 className="process-step__title">{step.title}</h3>
-                <p className="process-step__description">{step.description}</p>
-              </motion.article>
+              <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
+                <CardHeader className="px-5 pt-5">
+                  <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.2em] text-primary/80">
+                    Step {index + 1}
+                  </Badge>
+                  <CardTitle className="pt-3 text-lg">{step.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="px-5 pb-5 text-sm leading-7 text-muted-foreground">
+                  {step.description}
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="page-section page-section--tight">
-        <div className="section-container">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="surface-card"
-          >
-            <p className="cluster-label">Next Step</p>
-            <h2 className="section-title" style={{ marginTop: '0.8rem' }}>
-              If the business is ready for a cleaner digital presence, let’s scope it properly.
-            </h2>
-            <p className="section-copy">
-              The strongest results come when we tighten the visual system, messaging, and launch
-              setup together instead of treating them as separate problems.
-            </p>
-            <div className="action-row">
-              <Link to="/contact" className="button button--primary">
-                Contact RYNX
-                <HiArrowRight />
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
     </PageWrapper>

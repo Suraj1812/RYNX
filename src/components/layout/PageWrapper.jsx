@@ -8,7 +8,7 @@ export default function PageWrapper({ children }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="page-shell"
+      className="relative pt-24"
     >
       {children}
     </motion.div>

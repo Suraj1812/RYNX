@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { HiArrowRight } from 'react-icons/hi'
+import { ArrowRight } from 'lucide-react'
 import PageWrapper from '@/components/layout/PageWrapper'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { usePageMeta } from '@/hooks/usePageMeta'
 
 export default function NotFound() {
@@ -13,32 +15,26 @@ export default function NotFound() {
 
   return (
     <PageWrapper>
-      <section className="hero-section" style={{ minHeight: 'calc(100vh - 8rem)', display: 'flex', alignItems: 'center' }}>
-        <div className="page-orb page-orb--top" />
-        <div className="page-orb page-orb--bottom" />
-
-        <div className="section-container" style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            style={{ textAlign: 'center' }}
-          >
-            <p className="cluster-label">404</p>
-            <h1 className="hero-title" style={{ maxWidth: 'none', marginInline: 'auto' }}>
-              The page is missing, but the build is still on track.
+      <section className="mx-auto flex min-h-[70vh] w-full max-w-7xl items-center px-4 pb-12 sm:px-6 lg:px-8">
+        <Card className="surface-panel mx-auto w-full max-w-3xl rounded-[32px] py-0 shadow-none">
+          <CardContent className="space-y-6 px-6 py-8 text-center sm:px-10 sm:py-12">
+            <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+              404
+            </Badge>
+            <h1 className="display-title mx-auto max-w-2xl">
+              This route is missing, but the redesign is still intact.
             </h1>
-            <p className="hero-copy" style={{ marginInline: 'auto' }}>
-              The route you tried does not exist. Head back to the main site and continue from there.
+            <p className="section-copy mx-auto">
+              The page you tried to open does not exist. Use the main navigation to get back into the site.
             </p>
-            <div className="action-row" style={{ justifyContent: 'center' }}>
-              <Link to="/" className="button button--primary">
+            <Button asChild size="lg" className="h-12 rounded-full px-6">
+              <Link to="/">
                 Return home
-                <HiArrowRight />
+                <ArrowRight className="size-4" />
               </Link>
-            </div>
-          </motion.div>
-        </div>
+            </Button>
+          </CardContent>
+        </Card>
       </section>
     </PageWrapper>
   )

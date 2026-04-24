@@ -1,150 +1,225 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { HiArrowRight } from 'react-icons/hi'
+import {
+  ArrowRight,
+  Bot,
+  Layers3,
+  LayoutDashboard,
+  ShieldCheck,
+  Workflow,
+} from 'lucide-react'
 import PageWrapper from '@/components/layout/PageWrapper'
 import SectionHeading from '@/components/ui/SectionHeading'
-import {
-  capabilities,
-  faqItems,
-  processSteps,
-  serviceLines,
-} from '@/data/site'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { capabilities, faqItems, processSteps, serviceLines } from '@/data/site'
 import { usePageMeta } from '@/hooks/usePageMeta'
-import { fadeUp, staggerContainer } from '@/utils/animations'
+import { fadeUp } from '@/utils/animations'
+
+const iconMap = {
+  'brand-sites': Layers3,
+  'product-platforms': LayoutDashboard,
+  automation: Workflow,
+  'launch-readiness': ShieldCheck,
+}
+
+const capabilityGroups = [
+  {
+    title: 'Design system cleanup',
+    description: 'Move from one-off styling decisions to a consistent, reusable UI language.',
+    icon: Layers3,
+  },
+  {
+    title: 'Operational frontends',
+    description: 'Dashboards, portals, and internal surfaces with better hierarchy and clearer task flow.',
+    icon: LayoutDashboard,
+  },
+  {
+    title: 'Practical AI layers',
+    description: 'Automation and AI where it is actually useful, not as a visual gimmick.',
+    icon: Bot,
+  },
+]
 
 export default function Services() {
   usePageMeta({
     title: 'Services',
     description:
-      'Explore RYNX service lines across premium websites, custom platforms, automation systems, and launch-ready frontend delivery.',
+      'Explore the RYNX service stack across premium websites, structured product surfaces, automation layers, and Vercel-ready delivery.',
     path: '/services',
   })
 
   return (
     <PageWrapper>
-      <section className="hero-section">
-        <div className="page-orb page-orb--top" />
-        <div className="section-container">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.span variants={fadeUp} className="hero-tag">
-              Services built for premium outcomes
-            </motion.span>
-            <motion.h1 variants={fadeUp} className="hero-title">
-              Strategy, design, and engineering for teams that want a cleaner digital front.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="hero-copy">
-              RYNX focuses on the layer where perception and execution meet: websites that
-              raise confidence, product surfaces that reduce friction, and launch setup that
-              makes production less stressful.
-            </motion.p>
-          </motion.div>
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="space-y-5">
+          <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
+            Service stack
+          </Badge>
+          <h1 className="display-title max-w-4xl">
+            A dependency-first frontend system needs a more disciplined service model too.
+          </h1>
+          <p className="section-copy max-w-3xl">
+            The goal is not just prettier pages. It is a stronger base for branding, UI, forms,
+            motion, icons, and component logic so the whole experience feels more coherent and less improvised.
+          </p>
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="section-container">
-          <SectionHeading
-            label="Service Lines"
-            title="Built to upgrade both the visual signal and the delivery discipline."
-            subtitle="Each service line is shaped around outcomes a company can actually feel after launch."
-          />
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Service Lines"
+          title="What RYNX actually builds."
+          subtitle="Each lane is designed to move a company away from generic UI and toward a more intentional digital system."
+        />
 
-          <div className="card-grid card-grid--two">
-            {serviceLines.map((service) => (
-              <motion.article
+        <div className="grid gap-4 lg:grid-cols-2">
+          {serviceLines.map((service) => {
+            const Icon = iconMap[service.id] ?? Layers3
+
+            return (
+              <motion.div
                 key={service.id}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
-                className="surface-card surface-card--interactive"
               >
-                <p className="cluster-label">{service.id.replace('-', ' ')}</p>
-                <h3 className="service-card__title" style={{ marginTop: '0.7rem' }}>
-                  {service.title}
-                </h3>
-                <p className="service-card__summary">{service.summary}</p>
-                <ul className="detail-list">
-                  {service.outcomes.map((outcome) => (
-                    <li key={outcome}>{outcome}</li>
-                  ))}
-                </ul>
-                <div className="tag-list">
-                  {service.deliverables.map((deliverable) => (
-                    <span key={deliverable} className="tag">
-                      {deliverable}
-                    </span>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                <Card className="h-full rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
+                  <CardHeader className="px-6 pt-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="size-5" />
+                      </div>
+                      <Badge variant="outline" className="rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground">
+                        {service.id.replace('-', ' ')}
+                      </Badge>
+                    </div>
+                    <CardTitle className="pt-3 text-xl tracking-[-0.03em]">{service.title}</CardTitle>
+                    <CardDescription className="text-sm leading-7">{service.summary}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4 px-6 pb-6">
+                    <div className="grid gap-2">
+                      {service.outcomes.map((outcome) => (
+                        <div key={outcome} className="rounded-2xl border border-border/70 bg-secondary/65 px-4 py-3 text-sm text-muted-foreground">
+                          {outcome}
+                        </div>
+                      ))}
+                    </div>
+                    <Separator />
+                    <div className="flex flex-wrap gap-2">
+                      {service.deliverables.map((deliverable) => (
+                        <Badge key={deliverable} variant="secondary" className="rounded-full px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em]">
+                          {deliverable}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )
+          })}
         </div>
       </section>
 
-      <section className="page-section page-section--muted">
-        <div className="section-container split-layout">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="surface-panel p-6 sm:p-8">
             <SectionHeading
               label="Capabilities"
-              title="The practical layer behind the visuals."
-              subtitle="The site looks premium because the structure, pacing, and technical details are handled with the same care."
+              title="Where the system is now stronger."
+              subtitle="A lot of the improvement comes from replacing custom one-offs with a reliable component foundation."
               center={false}
+              className="mb-6"
             />
-            <div className="tag-list">
-              {capabilities.map((item) => (
-                <span key={item} className="tag">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="surface-card"
-          >
-            <p className="cluster-label">Delivery Rhythm</p>
-            <div className="list-panel" style={{ marginTop: '1rem' }}>
-              {processSteps.map((step) => (
-                <motion.div key={step.title} variants={fadeUp} className="list-panel__item">
-                  <span className="list-panel__dot" />
-                  <div className="list-panel__content">
-                    <strong>{step.title}</strong>
-                    <span>{step.description}</span>
-                  </div>
-                </motion.div>
+            <div className="flex flex-wrap gap-2">
+              {capabilities.map((capability) => (
+                <Badge key={capability} variant="outline" className="rounded-full border-border/70 px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em] text-muted-foreground">
+                  {capability}
+                </Badge>
               ))}
             </div>
-          </motion.div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {capabilityGroups.map((item) => {
+              const Icon = item.icon
+
+              return (
+                <Card key={item.title} className="rounded-[26px] border-border/70 bg-card/92 py-0 shadow-none">
+                  <CardHeader className="px-5 pt-5">
+                    <div className="flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="size-5" />
+                    </div>
+                    <CardTitle className="pt-3 text-base">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="px-5 pb-5 text-sm leading-7 text-muted-foreground">
+                    {item.description}
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="section-container">
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Delivery Rhythm"
+          title="How the build process stays controlled."
+          subtitle="The design system may be dependency-based, but the outcome still depends on structure and sequencing."
+        />
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {processSteps.map((step, index) => (
+            <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
+              <CardHeader className="px-5 pt-5">
+                <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.2em] text-primary/80">
+                  Step {index + 1}
+                </Badge>
+                <CardTitle className="pt-3 text-lg">{step.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="px-5 pb-5 text-sm leading-7 text-muted-foreground">
+                {step.description}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="surface-panel p-6 sm:p-8">
           <SectionHeading
             label="FAQ"
-            title="A few common questions before teams reach out."
-            subtitle="Short answers so you can decide quickly whether the fit is right."
+            title="A few direct answers before you reach out."
+            subtitle="These are the questions teams usually ask when they want the site to stop feeling generated."
+            className="mb-6"
           />
 
-          <div className="faq-list">
-            {faqItems.map((item) => (
-              <details key={item.question} className="faq-item">
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
+          <Accordion type="single" collapsible className="rounded-[24px] border border-border/70 bg-card/92 px-5 py-2">
+            {faqItems.map((item, index) => (
+              <AccordionItem key={item.question} value={`faq-${index}`}>
+                <AccordionTrigger className="py-5 text-base font-medium no-underline hover:no-underline">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-7 text-muted-foreground">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
 
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link to="/contact" className="inline-link">
-              Start the conversation
-              <HiArrowRight />
-            </Link>
+          <div className="mt-6">
+            <Button asChild size="lg" className="h-12 rounded-full px-6">
+              <Link to="/contact">
+                Start the conversation
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

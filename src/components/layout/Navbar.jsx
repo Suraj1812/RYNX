@@ -1,123 +1,133 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { HiArrowRight, HiOutlineMenuAlt3, HiX } from 'react-icons/hi'
+import { motion } from 'framer-motion'
+import { ArrowRight, Menu } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import ThemeToggle from '@/components/layout/ThemeToggle'
 import { navLinks } from '@/data/site'
+import { cn } from '@/lib/utils'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [mobileOpen])
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 12)
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <>
-      <header className={`site-nav ${isScrolled ? 'site-nav--scrolled' : ''}`}>
-        <div className="section-container">
-          <motion.nav
-            initial={{ opacity: 0, y: -18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="site-nav__inner"
-          >
-            <Link to="/" className="brand" aria-label="RYNX home">
-              <span className="brand__mark">R</span>
-              <span className="brand__text">
-                <span className="brand__name">RYNX</span>
-                <span className="brand__sub">Digital Systems</span>
-              </span>
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="surface-panel px-4 py-3 sm:px-5"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <Link to="/" className="flex min-w-0 items-center gap-3">
+              <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-sm">
+                R
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold tracking-[-0.03em]">RYNX</p>
+                <p className="truncate text-[0.72rem] uppercase tracking-[0.18em] text-muted-foreground">
+                  Digital Systems
+                </p>
+              </div>
             </Link>
 
-            <div className="nav-links">
+            <nav className="hidden items-center gap-1 lg:flex">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.href
 
                 return (
-                  <Link
+                  <Button
                     key={link.href}
-                    to={link.href}
-                    className={`nav-link ${isActive ? 'nav-link--active' : ''}`}
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className={cn(
+                      'rounded-full px-4 text-sm text-muted-foreground hover:text-foreground',
+                      isActive && 'bg-secondary text-foreground',
+                    )}
                   >
-                    {link.label}
-                  </Link>
+                    <Link to={link.href}>{link.label}</Link>
+                  </Button>
                 )
               })}
-            </div>
+            </nav>
 
-            <div className="nav-actions">
+            <div className="hidden items-center gap-2 lg:flex">
+              <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
+                Vercel ready
+              </Badge>
               <ThemeToggle />
-              <Link to="/contact" className="button button--primary">
-                Start a project
-                <HiArrowRight />
-              </Link>
-
-              <button
-                type="button"
-                className="mobile-toggle"
-                onClick={() => setMobileOpen((currentState) => !currentState)}
-                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              >
-                {mobileOpen ? <HiX className="h-5 w-5" /> : <HiOutlineMenuAlt3 className="h-5 w-5" />}
-              </button>
-            </div>
-          </motion.nav>
-        </div>
-      </header>
-
-      <AnimatePresence>
-        {mobileOpen ? (
-          <motion.div
-            className="mobile-panel"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              className="mobile-panel__card"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.25 }}
-            >
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.href
-
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`mobile-panel__link ${isActive ? 'mobile-panel__link--active' : ''}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-
-              <div className="center-row" style={{ marginTop: '0.5rem' }}>
-                <ThemeToggle />
-                <Link to="/contact" className="button button--primary" onClick={() => setMobileOpen(false)}>
-                  Let&apos;s talk
-                  <HiArrowRight />
+              <Button asChild className="rounded-full px-5">
+                <Link to="/contact">
+                  Start a project
+                  <ArrowRight className="size-4" />
                 </Link>
-              </div>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </>
+              </Button>
+            </div>
+
+            <div className="flex items-center gap-2 lg:hidden">
+              <ThemeToggle />
+              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon-sm" className="rounded-full border-border/70 bg-background/70">
+                    <Menu className="size-4" />
+                    <span className="sr-only">Open navigation</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[88vw] max-w-sm border-border/70 bg-background/98 p-0">
+                  <SheetHeader className="border-b border-border/70 pb-5">
+                    <SheetTitle>RYNX</SheetTitle>
+                    <SheetDescription>
+                      Premium websites, internal tools, and launch-ready digital systems.
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-2 px-4 py-5">
+                    {navLinks.map((link) => {
+                      const isActive = location.pathname === link.href
+
+                      return (
+                        <Button
+                          key={link.href}
+                          asChild
+                          variant={isActive ? 'secondary' : 'ghost'}
+                          className="h-11 justify-start rounded-2xl px-4"
+                        >
+                          <Link to={link.href} onClick={() => setMobileOpen(false)}>
+                            {link.label}
+                          </Link>
+                        </Button>
+                      )
+                    })}
+
+                    <div className="mt-4 flex flex-col gap-3">
+                      <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
+                        Corporate-grade redesign
+                      </Badge>
+                      <Button asChild className="h-11 rounded-2xl">
+                        <Link to="/contact" onClick={() => setMobileOpen(false)}>
+                          Contact RYNX
+                          <ArrowRight className="size-4" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </header>
   )
 }
