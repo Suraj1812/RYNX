@@ -49,7 +49,7 @@ function AppShell() {
       <ScrollProgress />
       <Navbar />
       <ScrollToTop />
-      <main key={pathname}>
+      <main key={pathname} className="flex-1">
         <Suspense
           fallback={
             <div className="route-loader">

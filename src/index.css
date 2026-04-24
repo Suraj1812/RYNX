@@ -33,6 +33,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: oklch(0.985 0.004 95);
   --foreground: oklch(0.22 0.023 257);
   --card: oklch(1 0 0);
@@ -58,6 +59,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.18 0.018 255);
   --foreground: oklch(0.96 0.006 95);
   --card: oklch(0.22 0.018 255);
@@ -90,12 +92,25 @@
     @apply scroll-smooth font-sans;
   }
 
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+    min-height: 100vh;
+    overflow-x: clip;
     background-image:
       radial-gradient(circle at top left, var(--page-glow-left), transparent 28%),
       radial-gradient(circle at top right, var(--page-glow-right), transparent 24%),
       linear-gradient(to bottom, color-mix(in srgb, var(--background) 96%, white 4%), var(--background));
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
   }
 
   body::before {
@@ -117,6 +132,26 @@
 }
 
 @layer utilities {
+  .site-shell {
+    @apply relative flex min-h-screen flex-col overflow-x-clip;
+  }
+
+  .route-loader {
+    @apply flex min-h-[46vh] items-center justify-center;
+  }
+
+  .route-loader__ring {
+    @apply size-11 animate-spin rounded-full border-2 border-primary/20 border-t-primary;
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .page-section {
+    @apply mt-14 sm:mt-16;
+  }
+
   .surface-panel {
     @apply rounded-[28px] border border-border/70 bg-background/85 shadow-[0_20px_70px_-36px_rgba(15,23,42,0.34)] backdrop-blur-xl;
   }
@@ -130,11 +165,11 @@
   }
 
   .display-title {
-    @apply font-heading text-4xl leading-[0.95] tracking-[-0.05em] md:text-6xl xl:text-7xl;
+    @apply font-heading text-[2.65rem] leading-[0.95] tracking-[-0.05em] sm:text-5xl lg:text-6xl xl:text-7xl;
   }
 
   .section-title {
-    @apply font-heading text-3xl leading-tight tracking-[-0.04em] md:text-5xl;
+    @apply font-heading text-[2rem] leading-tight tracking-[-0.04em] sm:text-[2.35rem] lg:text-5xl;
   }
 
   .section-copy {

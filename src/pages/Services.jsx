@@ -54,7 +54,7 @@ export default function Services() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell">
         <div className="space-y-5">
           <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
             Service stack
@@ -69,14 +69,14 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <SectionHeading
           label="Service Lines"
           title="What RYNX actually builds."
           subtitle="Each lane is designed to move a company away from generic UI and toward a more intentional digital system."
         />
 
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           {serviceLines.map((service) => {
             const Icon = iconMap[service.id] ?? Layers3
 
@@ -125,8 +125,8 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="page-shell page-section">
+        <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
           <div className="surface-panel p-6 sm:p-8">
             <SectionHeading
               label="Capabilities"
@@ -145,7 +145,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {capabilityGroups.map((item) => {
               const Icon = item.icon
 
@@ -167,14 +167,14 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <SectionHeading
           label="Delivery Rhythm"
           title="How the build process stays controlled."
           subtitle="The design system may be dependency-based, but the outcome still depends on structure and sequencing."
         />
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {processSteps.map((step, index) => (
             <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
               <CardHeader className="px-5 pt-5">
@@ -191,7 +191,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="page-shell page-section pb-12">
         <div className="surface-panel p-6 sm:p-8">
           <SectionHeading
             label="FAQ"

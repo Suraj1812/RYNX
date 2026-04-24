@@ -69,8 +69,8 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+      <section className="page-shell">
+        <div className="grid gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
           <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-6">
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
               <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
@@ -91,14 +91,14 @@ export default function Home() {
               frontend dependencies, and production-ready delivery for Vercel.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="h-12 rounded-full px-6">
+            <motion.div variants={fadeUp} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" className="h-12 rounded-full px-6 sm:w-auto">
                 <Link to="/contact">
                   Start a project
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-6">
+              <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-6 sm:w-auto">
                 <Link to="/projects">Review selected work</Link>
               </Button>
             </motion.div>
@@ -120,7 +120,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 18, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.14 }}
-            className="surface-panel p-4 sm:p-5"
+            className="surface-panel p-4 sm:p-5 lg:p-6"
           >
             <div className="grid gap-4">
               <Card className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
@@ -142,7 +142,7 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                 {differentiators.map((item) => {
                   const Icon = item.icon
 
@@ -166,14 +166,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <SectionHeading
           label="Service Lanes"
           title="The work now sits on a proper UI foundation, not a stitched-together landing page aesthetic."
           subtitle="Each lane is built to feel premium, reusable, and more productized in the long run."
         />
 
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           {serviceLines.map((service) => {
             const Icon = serviceIcons[service.id] ?? LayoutPanelTop
 
@@ -221,7 +221,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <div className="surface-panel p-6 sm:p-8">
           <SectionHeading
             label="Delivery Model"
@@ -231,7 +231,7 @@ export default function Home() {
             className="mb-8"
           />
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {processSteps.map((step, index) => (
               <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
                 <CardHeader className="px-5 pt-5">
@@ -249,14 +249,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <SectionHeading
           label="Selected Engagements"
           title="Representative work that matches the visual and delivery standard we’re aiming for."
           subtitle="Not startup-noise layouts. Structured digital surfaces with clearer hierarchy and more stable handoff."
         />
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 xl:grid-cols-3">
           {caseStudies.map((study) => (
             <motion.div
               key={study.id}
@@ -274,7 +274,7 @@ export default function Home() {
                   <CardDescription className="text-sm leading-7">{study.summary}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 px-6 pb-6">
-                  <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                     {study.impact.map((item) => (
                       <div key={item.label} className="rounded-2xl border border-border/70 bg-secondary/65 p-4">
                         <p className="text-lg font-semibold tracking-[-0.04em]">{item.value}</p>
@@ -299,7 +299,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="page-shell page-section pb-12">
         <div className="surface-panel flex flex-col gap-6 px-6 py-7 sm:px-8 sm:py-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-4">
             <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
@@ -313,7 +313,7 @@ export default function Home() {
               tailoring the copy, assets, and case evidence even more tightly to your actual business.
             </p>
           </div>
-          <Button asChild size="lg" className="h-12 rounded-full px-6">
+          <Button asChild size="lg" className="h-12 rounded-full px-6 sm:w-auto">
             <Link to="/contact">
               Let&apos;s make it sharper
               <ArrowRight className="size-4" />

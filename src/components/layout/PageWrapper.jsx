@@ -8,7 +8,7 @@ export default function PageWrapper({ children }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="relative pt-24"
+      className="relative pt-28 sm:pt-32"
     >
       {children}
     </motion.div>

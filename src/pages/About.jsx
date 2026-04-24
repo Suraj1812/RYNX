@@ -23,7 +23,7 @@ export default function About() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell">
         <div className="space-y-5">
           <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
             About RYNX
@@ -39,8 +39,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+      <section className="page-shell page-section">
+        <div className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
           <div className="surface-panel p-6 sm:p-8">
             <SectionHeading
               label="Positioning"
@@ -77,14 +77,14 @@ export default function About() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell page-section">
         <SectionHeading
           label="Principles"
           title="The standards behind the redesign direction."
           subtitle="These are the rules that keep the work from sliding back into generic agency output."
         />
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {principles.map((principle, index) => {
             const Icon = principleIcons[index] ?? Building2
 
@@ -113,7 +113,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="page-shell page-section pb-12">
         <div className="surface-panel p-6 sm:p-8">
           <SectionHeading
             label="Workflow"
@@ -123,7 +123,7 @@ export default function About() {
             className="mb-8"
           />
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {processSteps.map((step, index) => (
               <Card key={step.title} className="rounded-[24px] border-border/70 bg-card/92 py-0 shadow-none">
                 <CardHeader className="px-5 pt-5">

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Menu } from 'lucide-react'
+import BrandLockup from '@/components/brand/BrandLockup'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -22,27 +23,17 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="page-shell py-3 sm:py-4">
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="surface-panel px-4 py-3 sm:px-5"
+          className="surface-panel px-3 py-3 sm:px-4 lg:px-5"
         >
           <div className="flex items-center justify-between gap-3">
-            <Link to="/" className="flex min-w-0 items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-sm">
-                R
-              </div>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-semibold tracking-[-0.03em]">RYNX</p>
-                <p className="truncate text-[0.72rem] uppercase tracking-[0.18em] text-muted-foreground">
-                  Digital Systems
-                </p>
-              </div>
-            </Link>
+            <BrandLockup compact className="flex-1 sm:flex-none" />
 
-            <nav className="hidden items-center gap-1 lg:flex">
+            <nav className="hidden items-center gap-1 xl:flex">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.href
 
@@ -63,20 +54,20 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="hidden items-center gap-2 lg:flex">
+            <div className="hidden items-center gap-2 xl:flex">
               <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
                 Vercel ready
               </Badge>
               <ThemeToggle />
               <Button asChild className="rounded-full px-5">
                 <Link to="/contact">
-                  Start a project
+                  Start a brief
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
             </div>
 
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2 xl:hidden">
               <ThemeToggle />
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger asChild>
@@ -85,9 +76,11 @@ export default function Navbar() {
                     <span className="sr-only">Open navigation</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[88vw] max-w-sm border-border/70 bg-background/98 p-0">
+                <SheetContent side="right" className="w-[min(92vw,24rem)] border-border/70 bg-background/98 p-0">
                   <SheetHeader className="border-b border-border/70 pb-5">
-                    <SheetTitle>RYNX</SheetTitle>
+                    <SheetTitle className="text-left">
+                      <BrandLockup compact />
+                    </SheetTitle>
                     <SheetDescription>
                       Premium websites, internal tools, and launch-ready digital systems.
                     </SheetDescription>
@@ -116,7 +109,7 @@ export default function Navbar() {
                       </Badge>
                       <Button asChild className="h-11 rounded-2xl">
                         <Link to="/contact" onClick={() => setMobileOpen(false)}>
-                          Contact RYNX
+                          Start a brief
                           <ArrowRight className="size-4" />
                         </Link>
                       </Button>

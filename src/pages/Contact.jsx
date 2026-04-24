@@ -90,7 +90,7 @@ export default function Contact() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell">
         <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-5">
           <motion.div variants={fadeUp}>
             <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
@@ -107,8 +107,8 @@ export default function Contact() {
         </motion.div>
       </section>
 
-      <section className="mx-auto mt-16 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
+      <section className="page-shell page-section pb-12">
+        <div className="grid gap-4 xl:grid-cols-[0.88fr_1.12fr]">
           <div className="space-y-4">
             <Card className="rounded-[28px] border-border/70 bg-card/92 py-0 shadow-none">
               <CardHeader className="px-6 pt-6">

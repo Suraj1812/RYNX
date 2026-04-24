@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight, Mail, MapPin } from 'lucide-react'
+import BrandLockup from '@/components/brand/BrandLockup'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -15,22 +16,12 @@ export default function Footer() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-40px' }}
-        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
+        className="page-shell"
       >
         <div className="surface-panel px-6 py-8 sm:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.9fr_0.8fr]">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.15fr_0.75fr_0.85fr_0.9fr]">
             <motion.div variants={fadeUp} className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="flex size-11 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                  R
-                </div>
-                <div>
-                  <p className="text-sm font-semibold tracking-[-0.03em]">RYNX</p>
-                  <p className="text-[0.72rem] uppercase tracking-[0.18em] text-muted-foreground">
-                    Digital Systems
-                  </p>
-                </div>
-              </div>
+              <BrandLockup />
               <Badge variant="outline" className="rounded-full border-border/70 bg-secondary/70 px-3 py-1 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
                 Library-driven redesign
               </Badge>
@@ -75,14 +66,14 @@ export default function Footer() {
               <p className="text-sm leading-7 text-muted-foreground">
                 The project is prepared for Vercel deployment with production metadata, theme support, and a serverless contact flow.
               </p>
-              <div className="flex flex-col gap-2">
-                <Button asChild variant="outline" className="justify-between rounded-full">
+              <div className="flex flex-col gap-2 sm:flex-row xl:flex-col">
+                <Button asChild variant="outline" className="justify-between rounded-full sm:flex-1 xl:w-full">
                   <a href={siteConfig.social.github} target="_blank" rel="noreferrer">
                     View GitHub
                     <ArrowUpRight className="size-4" />
                   </a>
                 </Button>
-                <Button asChild className="justify-between rounded-full">
+                <Button asChild className="justify-between rounded-full sm:flex-1 xl:w-full">
                   <Link to="/contact">
                     Start a brief
                     <ArrowRight className="size-4" />
@@ -94,7 +85,7 @@ export default function Footer() {
 
           <Separator className="my-6" />
 
-          <div className="flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between">
             <p>© {new Date().getFullYear()} RYNX. Production-ready and Vercel aligned.</p>
             <p>Built with shadcn, Tailwind, lucide-react, and motion.</p>
           </div>

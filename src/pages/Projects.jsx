@@ -40,8 +40,8 @@ export default function Projects() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+      <section className="page-shell">
+        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
           <div className="space-y-5">
             <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
               Selected work
@@ -56,8 +56,8 @@ export default function Projects() {
             </p>
           </div>
 
-          <div className="surface-panel p-5">
-            <div className="grid gap-3 sm:grid-cols-3">
+          <div className="surface-panel p-5 lg:p-6">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {[
                 { label: 'component-led', value: 'UI stack', icon: FolderKanban },
                 { label: 'delivery-ready', value: 'Vercel', icon: ShieldCheck },
@@ -82,7 +82,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="mx-auto mt-14 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="page-shell mt-12 sm:mt-14">
         <div className="flex flex-wrap gap-2">
           {projectCategories.map((category) => (
             <Button
@@ -101,7 +101,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="page-shell mt-8 pb-12">
         <SectionHeading
           label="Case Studies"
           title="The projects below are filtered to show how the same system can support different business contexts."
@@ -109,7 +109,7 @@ export default function Projects() {
           className="mb-8"
         />
 
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
@@ -135,7 +135,7 @@ export default function Projects() {
                     <CardDescription className="text-sm leading-7">{project.summary}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4 px-6 pb-6">
-                    <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {project.impact.map((item) => (
                         <div key={item.label} className="rounded-2xl border border-border/70 bg-secondary/65 p-4">
                           <p className="text-lg font-semibold tracking-[-0.04em]">{item.value}</p>
@@ -170,7 +170,7 @@ export default function Projects() {
                   <Badge variant="outline" className="w-fit rounded-full border-border/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground">
                     {selectedProject.category}
                   </Badge>
-                  <SheetTitle className="pt-4 text-3xl tracking-[-0.04em]">
+                  <SheetTitle className="pt-4 text-2xl tracking-[-0.04em] sm:text-3xl">
                     {selectedProject.title}
                   </SheetTitle>
                   <SheetDescription className="max-w-xl text-sm leading-7">

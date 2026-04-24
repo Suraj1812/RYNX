@@ -15,7 +15,7 @@ export default function NotFound() {
 
   return (
     <PageWrapper>
-      <section className="mx-auto flex min-h-[70vh] w-full max-w-7xl items-center px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="page-shell flex min-h-[62vh] items-center pb-12">
         <Card className="surface-panel mx-auto w-full max-w-3xl rounded-[32px] py-0 shadow-none">
           <CardContent className="space-y-6 px-6 py-8 text-center sm:px-10 sm:py-12">
             <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-primary/80">
